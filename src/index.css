@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Lenis controls scrolling when active; disable native smooth so they don't fight. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background-color: #050506;
+  color: #f5f5f7;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: #fff;
+}
+
+/* Slim themed scrollbar (desktop) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#4c1d95, #7c3aed);
+  border-radius: 999px;
+}
+
+@layer components {
+  .glass {
+    background: rgba(18, 18, 24, 0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(167, 139, 250, 0.14);
+  }
+  .glass-strong {
+    background: rgba(12, 12, 16, 0.78);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid rgba(167, 139, 250, 0.18);
+  }
+  .text-gradient-royal {
+    background: linear-gradient(120deg, #c4b5fd 0%, #8b5cf6 40%, #7c3aed 70%, #e7cd8f 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(120deg, #b8902f 0%, #e7cd8f 50%, #d8b25a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hairline {
+    border-top: 1px solid rgba(167, 139, 250, 0.12);
+  }
+  .form-input {
+    @apply w-full rounded-xl border border-white/10 bg-ink-700/70 px-4 py-3 text-sm text-white placeholder:text-haze/50 transition-colors duration-200;
+    @apply focus:border-royal-light/60 focus:outline-none focus:ring-2 focus:ring-royal-light/30;
+  }
+  .form-input option {
+    color: #0a0a0c;
+  }
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-royal-light/80 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
+  }
+}
+
+@layer utilities {
+  .section-pad {
+    @apply px-5 sm:px-8 lg:px-16 xl:px-24;
+  }
+  .container-max {
+    @apply mx-auto w-full max-w-7xl;
+  }
+}
+
+/* Custom cursor: hide the system cursor only when our cursor is active (desktop). */
+body.cursor-active,
+body.cursor-active a,
+body.cursor-active button {
+  cursor: none;
+}
+
+/* Respect reduced-motion: kill non-essential animation and parallax. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
