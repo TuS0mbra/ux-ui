@@ -13,13 +13,6 @@ const METHODS = [
     href: c.phoneHref,
   })),
   { icon: 'mail', label: 'Email', value: SITE.email, href: SITE.emailHref },
-  {
-    icon: 'instagram',
-    label: 'Instagram',
-    value: SITE.instagramHandle,
-    href: SITE.instagramUrl,
-    external: true,
-  },
 ]
 
 export default function Contact() {
@@ -30,7 +23,7 @@ export default function Contact() {
     const form = e.currentTarget
     setStatus('submitting')
     try {
-      const res = await fetch(SITE.formspreeAction, {
+      const res = await fetch(SITE.formEndpoint, {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' },
@@ -102,7 +95,10 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
-                {/* PLACEHOLDER: set your Formspree endpoint in src/config.js (formspreeAction) */}
+                {/* FormSubmit config (delivery is set in src/config.js → formEndpoint) */}
+                <input type="hidden" name="_subject" value="New lead from S0MBRA Studio" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="Name" htmlFor="name">
                     <input

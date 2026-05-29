@@ -1,7 +1,7 @@
 // ============================================================================
 //  S0MBRA STUDIO — OWNER CONFIG
-//  >>> EDIT EVERYTHING IN THIS FILE TO MAKE THE SITE YOURS <<<
-//  Most values are filled in. Items still marked TODO need your accounts.
+//  >>> EDIT THESE VALUES TO MAKE THE SITE YOURS <<<
+//  Everything here is live. No extra accounts required.
 // ============================================================================
 
 export const SITE = {
@@ -10,7 +10,7 @@ export const SITE = {
   phoneHref: 'tel:+13609759853',
   smsHref: 'sms:+13609759853',
 
-  // --- All studio contacts (shown in the Contact section + footer) ---
+  // --- All studio contacts (shown in Booking, Contact, and the footer) ---
   contacts: [
     {
       name: 'Eric',
@@ -31,13 +31,9 @@ export const SITE = {
     return `mailto:${this.email}`
   },
 
-  // --- TODO: create these accounts and paste your links ---
-  instagramHandle: '@YOUR-HANDLE', // TODO: your Instagram handle
-  instagramUrl: 'https://instagram.com/YOUR-HANDLE', // TODO: full Instagram URL
-
-  // Calendly (Booking section embed). Free to set up at calendly.com.
-  calendlyUrl: 'https://calendly.com/YOUR-LINK', // TODO: your Calendly scheduling link
-
-  // Formspree (Contact form). Free to set up at formspree.io.
-  formspreeAction: 'https://formspree.io/f/YOUR-ID', // TODO: your Formspree form endpoint
+  // --- Contact form delivery (FormSubmit — no account needed) ---
+  // Submissions are emailed straight to the address above. IMPORTANT: the very
+  // first time the form is submitted, FormSubmit sends a one-time activation
+  // email to that inbox — click the link in it once and the form is live.
+  formEndpoint: 'https://formsubmit.co/ajax/S0mbrastudio00@gmail.com',
 }

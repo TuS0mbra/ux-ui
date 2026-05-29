@@ -63,13 +63,11 @@ export default function Footer() {
             </a>
             <div className="mt-1 flex gap-2">
               <a
-                href={SITE.instagramUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
+                href={SITE.phoneHref}
+                aria-label="Call"
                 className="focus-ring flex h-10 w-10 items-center justify-center rounded-full glass text-royal-light transition-colors hover:text-white"
               >
-                <Icon name="instagram" className="h-5 w-5" />
+                <Icon name="phone" className="h-5 w-5" />
               </a>
               <a
                 href={SITE.emailHref}
