@@ -16,12 +16,26 @@ export default function Pricing() {
         <Reveal>
           <SectionHeading
             eyebrow="Investment"
-            title="Pricing that pays for itself."
+            title="Premium work, priced below the market."
             subtitle="Transparent starting points. Every project begins with a free call and a fixed quote — no hourly meters, no surprises."
           />
         </Reveal>
 
-        <div className="mt-16 grid items-end gap-5 lg:grid-cols-3">
+        <Reveal delay={0.05}>
+          <div className="mx-auto mt-8 max-w-2xl rounded-2xl glass px-6 py-5 text-center">
+            <p className="font-display text-xs font-semibold uppercase tracking-[0.35em] text-gold-soft">
+              Founder Pricing
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-haze">
+              I'm early in my journey and building S0MBRA from the ground up — so you get
+              obsessive, premium work at rates well below what local designers charge. These are the
+              lowest prices I'll ever offer; as my portfolio and skills grow, so will they.{' '}
+              <span className="text-white">Get in now and lock in your rate.</span>
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid items-end gap-5 lg:grid-cols-3">
           {PRICING.map((tier, i) => (
             <Reveal key={tier.name} delay={i * 0.1}>
               <TiltCard className="rounded-[2rem]" max={6} glow={!tier.popular}>

@@ -6,9 +6,20 @@ import { SITE } from '../config'
 import { INDUSTRIES } from '../data/content'
 
 const METHODS = [
-  { icon: 'phone', label: 'Call', valueKey: 'phoneDisplay', hrefKey: 'phoneHref' },
-  { icon: 'mail', label: 'Email', valueKey: 'email', hrefKey: 'emailHref' },
-  { icon: 'instagram', label: 'Instagram', valueKey: 'instagramHandle', hrefKey: 'instagramUrl' },
+  ...SITE.contacts.map((c) => ({
+    icon: 'phone',
+    label: `Call or text ${c.name}`,
+    value: c.phoneDisplay,
+    href: c.phoneHref,
+  })),
+  { icon: 'mail', label: 'Email', value: SITE.email, href: SITE.emailHref },
+  {
+    icon: 'instagram',
+    label: 'Instagram',
+    value: SITE.instagramHandle,
+    href: SITE.instagramUrl,
+    external: true,
+  },
 ]
 
 export default function Contact() {
@@ -52,9 +63,9 @@ export default function Contact() {
               {METHODS.map((m) => (
                 <li key={m.label}>
                   <a
-                    href={SITE[m.hrefKey]}
+                    href={m.href}
                     className="focus-ring group flex items-center gap-4 rounded-2xl glass px-5 py-4 transition-colors hover:border-royal-light/40"
-                    {...(m.label === 'Instagram' ? { target: '_blank', rel: 'noreferrer' } : {})}
+                    {...(m.external ? { target: '_blank', rel: 'noreferrer' } : {})}
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 text-royal-light transition-colors group-hover:text-white">
                       <Icon name={m.icon} className="h-5 w-5" />
@@ -63,8 +74,7 @@ export default function Contact() {
                       <span className="block text-xs uppercase tracking-wider text-haze">
                         {m.label}
                       </span>
-                      {/* PLACEHOLDER values live in src/config.js */}
-                      <span className="block font-display text-white">{SITE[m.valueKey]}</span>
+                      <span className="block font-display text-white">{m.value}</span>
                     </span>
                     <Icon
                       name="arrow"

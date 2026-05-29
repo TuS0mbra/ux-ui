@@ -149,8 +149,8 @@ export const PROCESS = [
 export const PRICING = [
   {
     name: 'Launch',
-    // TODO: set your starting price (e.g. "$1,500")
-    price: '$___',
+    // Founder rate — comfortably under local market. Raise as your skills grow.
+    price: '$600',
     cadence: 'starting at',
     tagline: 'One high-impact page for small businesses.',
     features: [
@@ -165,8 +165,8 @@ export const PRICING = [
   },
   {
     name: 'Signature',
-    // TODO: set your starting price (e.g. "$4,500")
-    price: '$___',
+    // Founder rate — most local studios charge $2.5k–$5k for this.
+    price: '$1,800',
     cadence: 'starting at',
     tagline: 'A full custom multi-page website.',
     features: [

@@ -49,11 +49,16 @@ export default function Footer() {
             <span className="font-display text-xs uppercase tracking-[0.3em] text-gold-soft">
               Connect
             </span>
-            {/* PLACEHOLDER contact values live in src/config.js */}
-            <a href={SITE.phoneHref} className="focus-ring text-sm text-haze hover:text-white">
-              {SITE.phoneDisplay}
-            </a>
-            <a href={SITE.emailHref} className="focus-ring text-sm text-haze hover:text-white">
+            {SITE.contacts.map((c) => (
+              <a
+                key={c.name}
+                href={c.phoneHref}
+                className="focus-ring text-sm text-haze hover:text-white"
+              >
+                {c.name} · {c.phoneDisplay}
+              </a>
+            ))}
+            <a href={SITE.emailHref} className="focus-ring break-all text-sm text-haze hover:text-white">
               {SITE.email}
             </a>
             <div className="mt-1 flex gap-2">
