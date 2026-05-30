@@ -53,11 +53,20 @@ export default function About() {
               ))}
             </ul>
 
+            <div className="mt-8 flex items-start gap-3 rounded-2xl border border-royal-light/20 bg-white/5 p-4">
+              <Icon name="sparkle" className="mt-0.5 h-4 w-4 shrink-0 text-gold-soft" />
+              <p className="text-sm leading-relaxed text-white/90">
+                <span className="font-display font-semibold text-white">P.S. — we built this site too.</span>{' '}
+                The 3D, the animations, the booking flow, every word — all built by us, by hand. It's a
+                live preview of what we'll build for your business.
+              </p>
+            </div>
+
             <Button
               variant="primary"
               size="lg"
               icon="arrow"
-              className="mt-9"
+              className="mt-7"
               onClick={() => scrollToId('booking')}
             >
               Work With Us
