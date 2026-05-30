@@ -25,7 +25,7 @@ export const SERVICES = [
   },
   {
     title: 'Redesigns',
-    desc: 'Take a dated, slow, or "DIY" site and transform it into something that looks like it cost five figures.',
+    desc: 'Take a dated, slow, or "DIY" site and turn it into something that finally fits the business you\'ve grown into.',
     icon: 'wand',
   },
   {
@@ -55,7 +55,7 @@ export const SERVICES = [
   },
   {
     title: 'Branding Help',
-    desc: 'Color, type, and visual direction to give your business a confident, expensive-looking identity.',
+    desc: 'Color, type, and visual direction to give your business a confident, polished identity that feels like you.',
     icon: 'palette',
   },
   {
@@ -65,61 +65,101 @@ export const SERVICES = [
   },
 ]
 
-// Portfolio — CLEARLY FICTIONAL placeholder projects. Owner swaps in real work later.
+// Portfolio — unsolicited CONCEPT redesigns for real Vancouver, WA businesses.
+// Not paid work; we have NOT been hired by these businesses. The "before"
+// mockups are stylized "generic dated template" frames for contrast — they are
+// NOT representations of the businesses' actual current sites. This is clearly
+// labeled in the section copy and the disclaimer footnote.
 export const PORTFOLIO = [
   {
-    name: 'Apex Auto Detailing',
-    category: 'Automotive',
-    result: '+212% booking requests',
-    blurb: 'A flat brochure site reimagined as a cinematic, dark-mode showroom.',
-    beforeHue: '210',
-    afterFrom: '#4c1d95',
-    afterTo: '#7c3aed',
-  },
-  {
-    name: 'Iron Forge Gym',
-    category: 'Fitness',
-    result: '3.1× trial sign-ups',
-    blurb: 'Bold, high-energy redesign with a frictionless membership funnel.',
+    name: 'Burgerville',
+    category: 'Restaurant · Vancouver, WA',
+    blurb:
+      'A warmer, hungrier rebuild — the food, the order button, and one tap to the nearest location, front and center.',
     beforeHue: '30',
-    afterFrom: '#6d28d9',
-    afterTo: '#a78bfa',
+    brand: {
+      headline: 'Real food. Real fast.',
+      sub: 'Pacific Northwest favorites since 1961.',
+      ctaPrimary: 'Order Now',
+      ctaSecondary: 'Find a Spot',
+      palette: { from: '#3a0a05', via: '#9b2412', to: '#f59e0b', accent: '#fde68a' },
+      motif: 'flame',
+    },
   },
   {
-    name: 'Lumen Bistro',
-    category: 'Restaurant',
-    result: '+88% reservations',
-    blurb: 'An elegant, appetite-driven experience with one-tap booking.',
-    beforeHue: '150',
-    afterFrom: '#4c1d95',
-    afterTo: '#d8b25a',
-  },
-  {
-    name: 'Fade Theory',
-    category: 'Barbershop',
-    result: '2.4× online bookings',
-    blurb: 'A sharp, modern brand that matches the precision of the cuts.',
-    beforeHue: '0',
-    afterFrom: '#7c3aed',
-    afterTo: '#e7cd8f',
-  },
-  {
-    name: 'Summit Build Co.',
-    category: 'Construction',
-    result: '+140% quote requests',
-    blurb: 'Heavy-duty credibility with a clean, trustworthy project showcase.',
-    beforeHue: '200',
-    afterFrom: '#4c1d95',
-    afterTo: '#8b5cf6',
-  },
-  {
-    name: 'Crown & Key Realty',
-    category: 'Real Estate',
-    result: '+96% qualified leads',
-    blurb: 'A luxury listing experience that makes every property feel premium.',
+    name: 'Heathen Brewing',
+    category: 'Brewery · Vancouver, WA',
+    blurb:
+      'A heavier, moodier rebuild that matches the beer — bold, confident, and easy to find your next pint.',
     beforeHue: '260',
-    afterFrom: '#6d28d9',
-    afterTo: '#d8b25a',
+    brand: {
+      headline: 'Brewed heavy. Pour confident.',
+      sub: 'Craft beer brewed in Vancouver, WA.',
+      ctaPrimary: 'Visit the Taproom',
+      ctaSecondary: "What's on Tap",
+      palette: { from: '#0a0810', via: '#3b0764', to: '#7c3aed', accent: '#facc15' },
+      motif: 'glass',
+    },
+  },
+  {
+    name: 'Kiggins Theatre',
+    category: 'Cinema · Vancouver, WA',
+    blurb:
+      'A century of stories deserves a cinematic site — velvet, gold, and tickets one tap away.',
+    beforeHue: '0',
+    brand: {
+      headline: 'Where Vancouver goes for film.',
+      sub: 'Independent cinema in downtown since 1936.',
+      ctaPrimary: 'Get Tickets',
+      ctaSecondary: "What's Playing",
+      palette: { from: '#180405', via: '#5a0f1a', to: '#d8b25a', accent: '#fde68a' },
+      motif: 'film',
+    },
+  },
+  {
+    name: 'Loowit Brewing',
+    category: 'Brewery · Vancouver, WA',
+    blurb:
+      'A clean, confident identity rebuild that shows off the eruption-energy of the name at a single glance.',
+    beforeHue: '180',
+    brand: {
+      headline: 'Volcanic beer. Local roots.',
+      sub: 'Brewed at the foot of Mount St. Helens.',
+      ctaPrimary: 'Taproom Hours',
+      ctaSecondary: 'Find Our Beer',
+      palette: { from: '#0b1a1a', via: '#134e4a', to: '#22c55e', accent: '#fde68a' },
+      motif: 'flame',
+    },
+  },
+  {
+    name: 'Beaches Restaurant',
+    category: 'Waterfront Dining · Vancouver, WA',
+    blurb:
+      'A relaxed, sun-on-the-water rebuild that makes booking a sunset table feel inevitable.',
+    beforeHue: '210',
+    brand: {
+      headline: 'Sunset, riverside, every night.',
+      sub: 'A Vancouver waterfront classic.',
+      ctaPrimary: 'Reserve a Table',
+      ctaSecondary: 'See the Menu',
+      palette: { from: '#0c1e3a', via: '#1d4ed8', to: '#f59e0b', accent: '#fef3c7' },
+      motif: 'wine',
+    },
+  },
+  {
+    name: 'Trap Door Brewing',
+    category: 'Brewery · Vancouver, WA',
+    blurb:
+      "An edgier, secret-club rebuild — the kind of site that makes you want to push open the door.",
+    beforeHue: '300',
+    brand: {
+      headline: 'Pull the handle. Find a pint.',
+      sub: 'Independent craft brewery and pizza.',
+      ctaPrimary: 'Visit the Taproom',
+      ctaSecondary: 'On Tap Now',
+      palette: { from: '#080208', via: '#581c87', to: '#e11d48', accent: '#fde68a' },
+      motif: 'glass',
+    },
   },
 ]
 
@@ -132,7 +172,7 @@ export const PROCESS = [
   {
     step: '02',
     title: 'Design',
-    desc: 'I craft a custom direction — layout, motion, and brand feel — and refine it with you until it feels right.',
+    desc: 'We craft a custom direction — layout, motion, and brand feel — and refine it with you until it feels right.',
   },
   {
     step: '03',
@@ -207,7 +247,7 @@ export const TESTIMONIALS = [
   },
   {
     quote:
-      'Sign-ups tripled in the first month. The site feels more expensive than businesses ten times our size.',
+      'Sign-ups tripled in the first month. The site finally looks like a business twice our size.',
     name: 'Dana Whitlock',
     role: 'Founder, Iron Forge Gym',
   },

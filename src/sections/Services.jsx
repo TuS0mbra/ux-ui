@@ -15,9 +15,9 @@ export default function Services() {
       <div className="container-max relative">
         <Reveal>
           <SectionHeading
-            eyebrow="What I Do"
-            title="Everything your business needs to look expensive online."
-            subtitle="One designer, end to end. Strategy, design, build, and the technical details handled — so you get a site that performs as good as it looks."
+            eyebrow="What We Do"
+            title="Everything you need to grow online, in one place."
+            subtitle="One small studio, end to end. Strategy, design, build, and the technical bits — all handled for you. No agencies, no run-around, no surprise invoices."
           />
         </Reveal>
 

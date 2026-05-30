@@ -15,9 +15,9 @@ export default function Pricing() {
       <div className="container-max relative">
         <Reveal>
           <SectionHeading
-            eyebrow="Investment"
-            title="Premium work, priced below the market."
-            subtitle="Transparent starting points. Every project begins with a free call and a fixed quote — no hourly meters, no surprises."
+            eyebrow="Pricing"
+            title="Honest prices for great work."
+            subtitle="Transparent starting points. Every project begins with a free call and a fixed quote — no hourly meters, no surprise invoices."
           />
         </Reveal>
 
@@ -27,10 +27,10 @@ export default function Pricing() {
               Founder Pricing
             </p>
             <p className="mt-3 text-sm leading-relaxed text-haze">
-              I'm early in my journey and building S0MBRA from the ground up — so you get
-              obsessive, premium work at rates well below what local designers charge. These are the
-              lowest prices I'll ever offer; as my portfolio and skills grow, so will they.{' '}
-              <span className="text-white">Get in now and lock in your rate.</span>
+              We're early in our journey and building S0MBRA from the ground up — so you get
+              obsessive, hands-on work at rates well below what local designers usually charge.
+              These are the lowest prices we'll ever offer; as our portfolio and skills grow, so
+              will they. <span className="text-white">Get in now and lock in your rate.</span>
             </p>
           </div>
         </Reveal>

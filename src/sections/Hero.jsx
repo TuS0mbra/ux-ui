@@ -7,7 +7,7 @@ import { useIsDesktop, usePrefersReducedMotion } from '../hooks/useMediaQuery'
 
 const HeroScene = lazy(() => import('../components/HeroScene'))
 
-const HEADLINE = ['Built', 'To', 'Make', 'Businesses', 'Look', 'Expensive.']
+const HEADLINE = ['You', 'Need', 'It.', 'We', 'Make', 'It.']
 
 export default function Hero() {
   const reduced = usePrefersReducedMotion()
@@ -52,15 +52,15 @@ export default function Hero() {
           className="mb-7 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs uppercase tracking-[0.3em] text-haze"
         >
           <span className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-gold" aria-hidden="true" />
-          Premium Web Design Studio
+          Vancouver, WA · Web Design Studio
         </motion.div>
 
         <h1 className="max-w-5xl font-display text-[2.6rem] font-bold leading-[1.02] tracking-tightest text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
           {HEADLINE.map((word, i) => (
             <motion.span
-              key={word}
+              key={`${word}-${i}`}
               className={`mr-[0.25em] inline-block ${
-                word === 'Expensive.' ? 'text-gradient-royal animate-gradient-pan' : ''
+                i === HEADLINE.length - 1 ? 'text-gradient-royal animate-gradient-pan' : ''
               }`}
               initial={reduced ? false : { opacity: 0, y: 26, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -77,8 +77,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.9 }}
           className="mt-7 max-w-xl text-base leading-relaxed text-haze sm:text-lg"
         >
-          I design and build websites that make local businesses look modern, premium, and
-          untouchable — so you win the customer before they even call.
+          Friendly, well-built websites for every kind of business in Vancouver, WA — designed
+          around how you actually work, priced so you can actually say yes.
         </motion.p>
 
         <motion.div
@@ -91,7 +91,7 @@ export default function Hero() {
             Book a Free Call
           </Button>
           <Button variant="ghost" size="lg" onClick={() => scrollToId('portfolio')}>
-            See My Work
+            See Our Work
           </Button>
         </motion.div>
       </div>

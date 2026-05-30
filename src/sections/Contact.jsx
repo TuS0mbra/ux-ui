@@ -48,8 +48,8 @@ export default function Contact() {
             <SectionHeading
               align="left"
               eyebrow="Get In Touch"
-              title="Tell me about your business."
-              subtitle="Fill out the form or reach out directly. I reply to every message personally — usually within one business day."
+              title="Tell us about your business."
+              subtitle="Fill out the form or reach out directly. We reply to every message personally — usually within one business day."
             />
 
             <ul className="mt-9 flex flex-col gap-3">
@@ -90,7 +90,7 @@ export default function Contact() {
                 </span>
                 <h3 className="font-display text-2xl font-semibold text-white">Message sent.</h3>
                 <p className="max-w-sm text-haze">
-                  Thanks for reaching out — I'll get back to you personally within one business day.
+                  Thanks for reaching out — we'll get back to you personally within one business day.
                 </p>
               </div>
             ) : (

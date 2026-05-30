@@ -4,10 +4,11 @@ import Icon from '../components/Icon'
 import { SectionHeading } from '../components/ui'
 import { PORTFOLIO } from '../data/content'
 
-// Pure-CSS mock "screenshots" so there are zero image assets to ship. The
-// BEFORE layer is a dated/flat mock; on hover an AFTER layer wipes across to
-// dramatize the redesign. All projects are clearly-labeled placeholders.
+// Pure-CSS mock "screenshots" — zero image assets, every card is brand-themed.
+// BEFORE is a deliberately generic dated-template stand-in (NOT the business's
+// real site); on hover, the branded AFTER concept wipes across.
 function BeforeAfter({ project }) {
+  const { brand, beforeHue } = project
   return (
     <div className="group/ba relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-ink-700">
       {/* browser chrome */}
@@ -18,48 +19,68 @@ function BeforeAfter({ project }) {
       </div>
 
       <div className="relative h-[calc(100%-29px)] w-full">
-        {/* BEFORE — dated, flat */}
+        {/* BEFORE — generic dated template (stylized, not the business's real site) */}
         <div
           className="absolute inset-0 p-4"
-          style={{ background: `hsl(${project.beforeHue} 18% 88%)` }}
+          style={{ background: `hsl(${beforeHue} 16% 86%)` }}
           aria-hidden="true"
         >
-          <div className="h-3 w-1/3 rounded-sm bg-black/40" />
-          <div className="mt-3 h-10 w-full rounded-sm bg-black/10" />
-          <div className="mt-3 h-2 w-3/4 rounded-sm bg-black/20" />
-          <div className="mt-2 h-2 w-2/3 rounded-sm bg-black/20" />
+          <div className="flex items-center justify-between">
+            <div className="h-2.5 w-1/3 rounded-sm bg-black/45" />
+            <div className="flex gap-1.5">
+              <div className="h-1.5 w-6 rounded-sm bg-black/25" />
+              <div className="h-1.5 w-6 rounded-sm bg-black/25" />
+            </div>
+          </div>
+          <div className="mt-3 h-9 w-full rounded-sm bg-black/10" />
+          <div className="mt-3 h-1.5 w-3/4 rounded-sm bg-black/20" />
+          <div className="mt-1.5 h-1.5 w-2/3 rounded-sm bg-black/20" />
           <div className="mt-4 flex gap-2">
-            <div className="h-8 w-16 rounded-sm bg-black/30" />
-            <div className="h-8 w-16 rounded-sm bg-black/15" />
+            <div className="h-7 w-16 rounded-sm bg-black/30" />
+            <div className="h-7 w-16 rounded-sm bg-black/15" />
           </div>
         </div>
 
-        {/* AFTER — cinematic, wipes in on hover */}
+        {/* AFTER — branded concept site mock */}
         <div
-          className="absolute inset-0 p-4 transition-[clip-path] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [clip-path:inset(0_100%_0_0)] group-hover/ba:[clip-path:inset(0_0_0_0)]"
+          className="absolute inset-0 transition-[clip-path] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [clip-path:inset(0_100%_0_0)] group-hover/ba:[clip-path:inset(0_0_0_0)]"
           style={{
-            background: `linear-gradient(135deg, ${project.afterFrom}, ${project.afterTo})`,
+            background: `linear-gradient(135deg, ${brand.palette.from}, ${brand.palette.via}, ${brand.palette.to})`,
           }}
           aria-hidden="true"
         >
           <div className="absolute inset-0 bg-ink-900/55" />
-          <div className="relative">
-            <div className="h-3 w-1/4 rounded-full bg-gold-soft/90" />
-            <div className="mt-4 h-6 w-3/4 rounded-md bg-white/90" />
-            <div className="mt-2 h-2 w-1/2 rounded-full bg-white/40" />
-            <div className="mt-5 flex gap-2">
-              <div className="h-8 w-20 rounded-full bg-white/90" />
-              <div className="h-8 w-20 rounded-full border border-white/40" />
+          <div className="relative flex h-full flex-col p-3">
+            <div className="flex items-center justify-between">
+              <span className="font-display text-[9px] font-semibold uppercase tracking-[0.18em] text-white/95">
+                {project.name}
+              </span>
+              <span style={{ color: brand.palette.accent }}>
+                <Icon name={brand.motif} className="h-3.5 w-3.5" strokeWidth={1.8} />
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col justify-center gap-1">
+              <h4 className="font-display text-sm font-bold leading-tight text-white sm:text-[15px]">
+                {brand.headline}
+              </h4>
+              <p className="text-[10px] leading-snug text-white/75">{brand.sub}</p>
+            </div>
+            <div className="flex gap-1.5">
+              <span
+                className="rounded-full px-2.5 py-1 text-[9px] font-semibold"
+                style={{ background: brand.palette.accent, color: '#1a0a05' }}
+              >
+                {brand.ctaPrimary}
+              </span>
+              <span className="rounded-full border border-white/40 px-2.5 py-1 text-[9px] font-medium text-white">
+                {brand.ctaSecondary}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* labels */}
-        <span className="absolute left-3 top-3 z-10 rounded-full bg-black/50 px-2 py-1 font-display text-[0.6rem] uppercase tracking-widest text-white/70 transition-opacity duration-300 group-hover/ba:opacity-0">
+        <span className="absolute left-3 top-3 z-10 rounded-full bg-black/55 px-2 py-1 font-display text-[0.6rem] uppercase tracking-widest text-white/75 transition-opacity duration-300 group-hover/ba:opacity-0">
           Before
-        </span>
-        <span className="absolute right-3 top-3 z-10 rounded-full bg-black/30 px-2 py-1 font-display text-[0.6rem] uppercase tracking-widest text-gold-soft opacity-0 backdrop-blur transition-opacity duration-300 group-hover/ba:opacity-100">
-          After
         </span>
       </div>
     </div>
@@ -72,9 +93,9 @@ export default function Portfolio() {
       <div className="container-max">
         <Reveal>
           <SectionHeading
-            eyebrow="Selected Work"
-            title="The transformation speaks for itself."
-            subtitle="Hover any project to see the before → after. (These are sample concepts — real client work replaces them after launch.)"
+            eyebrow="Concept Work · Vancouver, WA"
+            title="What we'd build for our city."
+            subtitle="Hover any card to see the redesign. These are unsolicited concept reimaginings of real Vancouver, WA businesses — a small love letter to the city, and a preview of what we'd build for you."
           />
         </Reveal>
 
@@ -89,8 +110,8 @@ export default function Portfolio() {
                       <h3 className="font-display text-lg font-semibold text-white">{project.name}</h3>
                       <p className="text-xs uppercase tracking-wider text-haze">{project.category}</p>
                     </div>
-                    <span className="shrink-0 rounded-full bg-royal/15 px-3 py-1 text-xs font-medium text-royal-light">
-                      {project.result}
+                    <span className="shrink-0 rounded-full bg-royal/15 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-royal-light">
+                      Concept
                     </span>
                   </div>
                   <p className="px-1 text-sm leading-relaxed text-haze">{project.blurb}</p>
@@ -101,9 +122,9 @@ export default function Portfolio() {
         </div>
 
         <Reveal delay={0.1}>
-          <p className="mt-10 text-center text-xs uppercase tracking-[0.3em] text-haze/70">
-            {/* PLACEHOLDER: swap these sample concepts for real client case studies */}
-            Sample concepts — your project could be next
+          <p className="mx-auto mt-10 max-w-2xl text-center text-[0.7rem] uppercase tracking-[0.25em] text-haze/70">
+            Unsolicited concept redesigns for real Vancouver, WA businesses — not paid client work.
+            "Before" mockups are stylized for contrast, not the businesses' actual sites.
           </p>
         </Reveal>
       </div>

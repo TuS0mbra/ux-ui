@@ -10,9 +10,9 @@ export default function Industries() {
       <div className="container-max">
         <Reveal>
           <SectionHeading
-            eyebrow="Who I Build For"
-            title="If you run it, I can make it look like a brand."
-            subtitle="From the garage to the gym floor — I design websites that make local businesses look like the most established name in town."
+            eyebrow="Who We Build For"
+            title="If you run it, we'll build the site you need."
+            subtitle="From the garage to the gym floor — we design friendly, modern websites that fit how your business actually works. You need it, we make it."
           />
         </Reveal>
 
@@ -29,7 +29,7 @@ export default function Industries() {
                   </h3>
                   <p className="text-sm text-haze">{industry.tag}</p>
                   <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-xs font-medium uppercase tracking-wider text-gold-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    I build for you too
+                    Yep, we build for you too
                     <Icon name="arrow" className="h-3.5 w-3.5" />
                   </span>
                 </article>

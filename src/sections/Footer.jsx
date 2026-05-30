@@ -25,7 +25,8 @@ export default function Footer() {
           <div className="max-w-sm">
             <Wordmark className="text-4xl" />
             <p className="mt-5 text-sm leading-relaxed text-haze">
-              Premium websites that make local businesses look expensive, modern, and untouchable.
+              Friendly, modern websites for every kind of business in Vancouver, WA. You need it,
+              we make it.
             </p>
           </div>
 
@@ -83,7 +84,7 @@ export default function Footer() {
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-7 sm:flex-row">
           <p className="text-xs text-haze/70">© {year} S0MBRA Studio. All rights reserved.</p>
           <p className="font-display text-xs uppercase tracking-[0.3em] text-haze/70">
-            Designed to make you look expensive
+            Built for the businesses that built this town
           </p>
         </div>
       </div>
