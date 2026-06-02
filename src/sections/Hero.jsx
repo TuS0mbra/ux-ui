@@ -77,8 +77,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.9 }}
           className="mt-7 max-w-xl text-base leading-relaxed text-haze sm:text-lg"
         >
-          Friendly, well-built websites for every kind of business in Vancouver, WA — designed
-          around how you actually work, priced so you can actually say yes.
+          You focus on running your business. We'll build the website that helps it grow.
         </motion.p>
 
         <motion.div

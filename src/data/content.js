@@ -167,7 +167,7 @@ export const PROCESS = [
   {
     step: '01',
     title: 'Discovery',
-    desc: 'A free call to understand your business, goals, and what makes you different. No pressure, just clarity.',
+    desc: 'A free call to understand your business, your goals, and what you need your website to actually do — so we can make it perfect for you.',
   },
   {
     step: '02',
@@ -182,7 +182,7 @@ export const PROCESS = [
   {
     step: '04',
     title: 'Launch',
-    desc: 'We go live, you get training, and your business finally looks the way it deserves to.',
+    desc: 'We go live, you get training, and your business looks the way you always imagined it.',
   },
 ]
 
