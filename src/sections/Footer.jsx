@@ -4,88 +4,91 @@ import { SITE } from '../config'
 import { scrollToId } from '../lib/scroll'
 
 const NAV = [
-  { label: 'Industries', id: 'industries' },
-  { label: 'Services', id: 'services' },
-  { label: 'Work', id: 'portfolio' },
-  { label: 'Pricing', id: 'pricing' },
-  { label: 'About', id: 'about' },
-  { label: 'Contact', id: 'contact' },
+  { label: 'Index', id: 'industries' },
+  { label: 'Edition', id: 'services' },
+  { label: 'Collection', id: 'portfolio' },
+  { label: 'Tariff', id: 'pricing' },
+  { label: 'Studio', id: 'about' },
+  { label: 'Correspondence', id: 'contact' },
 ]
 
 export default function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className="relative section-pad pb-28 pt-20 sm:pb-20">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-royal/40 to-transparent"
-      />
+    <footer className="relative section-pad bg-ink-900 pb-28 pt-20 sm:pb-20">
       <div className="container-max">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+        {/* gold rule */}
+        <span className="block h-px w-full bg-gold/40" aria-hidden="true" />
+
+        <div className="mt-12 grid gap-12 lg:grid-cols-3 lg:gap-16">
           <div className="max-w-sm">
-            <Wordmark className="text-4xl" />
-            <p className="mt-5 text-sm leading-relaxed text-haze">
-              Friendly, modern websites for every kind of business in Vancouver, WA. You need it,
-              we make it.
+            <Wordmark className="text-5xl" />
+            <p className="mt-6 text-sm leading-relaxed text-haze">
+              Friendly, modern websites for every kind of business in Vancouver, WA.
+              You need it, we make it.
             </p>
           </div>
 
           <nav aria-label="Footer" className="flex flex-col gap-3">
-            <span className="font-display text-xs uppercase tracking-[0.3em] text-gold-soft">
-              Explore
-            </span>
-            {NAV.map((link) => (
+            <span className="meta text-gold">Chapters</span>
+            {NAV.map((link, i) => (
               <button
                 key={link.id}
                 type="button"
                 onClick={() => scrollToId(link.id)}
-                className="focus-ring w-fit text-left text-sm text-haze transition-colors hover:text-white"
+                className="focus-ring flex w-fit items-baseline gap-3 text-left transition-colors hover:text-gold"
+                data-cursor-label={link.label}
               >
-                {link.label}
+                <span className="meta text-haze">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-display text-lg italic text-haze hover:text-white">{link.label}</span>
               </button>
             ))}
           </nav>
 
           <div className="flex flex-col gap-3">
-            <span className="font-display text-xs uppercase tracking-[0.3em] text-gold-soft">
-              Connect
-            </span>
+            <span className="meta text-gold">Correspondence</span>
             {SITE.contacts.map((c) => (
               <a
                 key={c.name}
                 href={c.phoneHref}
-                className="focus-ring text-sm text-haze hover:text-white"
+                className="focus-ring font-display text-lg italic text-haze transition-colors hover:text-white"
+                data-cursor-label="Call"
               >
                 {c.name} · {c.phoneDisplay}
               </a>
             ))}
-            <a href={SITE.emailHref} className="focus-ring break-all text-sm text-haze hover:text-white">
+            <a
+              href={SITE.emailHref}
+              className="focus-ring break-all font-display text-lg italic text-haze transition-colors hover:text-white"
+              data-cursor-label="Email"
+            >
               {SITE.email}
             </a>
-            <div className="mt-1 flex gap-2">
+            <div className="mt-3 flex gap-2">
               <a
                 href={SITE.phoneHref}
                 aria-label="Call"
-                className="focus-ring flex h-10 w-10 items-center justify-center rounded-full glass text-royal-light transition-colors hover:text-white"
+                className="focus-ring flex h-10 w-10 items-center justify-center border border-white/15 text-haze transition-colors hover:border-gold hover:text-gold"
+                data-cursor-label="Call"
               >
-                <Icon name="phone" className="h-5 w-5" />
+                <Icon name="phone" className="h-4 w-4" />
               </a>
               <a
                 href={SITE.emailHref}
                 aria-label="Email"
-                className="focus-ring flex h-10 w-10 items-center justify-center rounded-full glass text-royal-light transition-colors hover:text-white"
+                className="focus-ring flex h-10 w-10 items-center justify-center border border-white/15 text-haze transition-colors hover:border-gold hover:text-gold"
+                data-cursor-label="Email"
               >
-                <Icon name="mail" className="h-5 w-5" />
+                <Icon name="mail" className="h-4 w-4" />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-7 sm:flex-row">
-          <p className="text-xs text-haze/70">© {year} S0MBRA Studio. All rights reserved.</p>
-          <p className="font-display text-xs uppercase tracking-[0.3em] text-haze/70">
-            Built for the businesses that built this town
-          </p>
+        {/* Colophon */}
+        <div className="mt-20 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-7 sm:flex-row sm:items-center">
+          <p className="meta text-haze">© {year} · S0MBRA Studio · All rights reserved</p>
+          <p className="meta text-haze">Edition · MMXXV · Issue 01</p>
         </div>
       </div>
     </footer>

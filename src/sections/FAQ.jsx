@@ -2,27 +2,25 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Reveal from '../components/Reveal'
 import Icon from '../components/Icon'
-import { SectionHeading } from '../components/ui'
+import ChapterIntro from '../components/ChapterIntro'
 import { FAQ as ITEMS } from '../data/content'
 
 export default function FAQ() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="faq" className="relative section-pad py-24 sm:py-32">
-      <div className="container-max max-w-3xl">
-        <Reveal>
-          <SectionHeading eyebrow="Questions" title="Good questions, straight answers." />
-        </Reveal>
+    <section id="faq" className="relative section-pad bg-graphite py-32 sm:py-40">
+      <div className="container-max max-w-4xl">
+        <ChapterIntro number="08" title="Footnotes." caption="Good questions, straight answers" />
 
-        <div className="mt-12 flex flex-col gap-3">
+        <ul className="mt-20 border-t border-white/10">
           {ITEMS.map((item, i) => {
             const isOpen = open === i
             const panelId = `faq-panel-${i}`
             const btnId = `faq-button-${i}`
             return (
               <Reveal key={item.q} delay={i * 0.04}>
-                <div className="overflow-hidden rounded-2xl glass">
+                <li className="border-b border-white/10">
                   <h3>
                     <button
                       id={btnId}
@@ -30,17 +28,19 @@ export default function FAQ() {
                       aria-expanded={isOpen}
                       aria-controls={panelId}
                       onClick={() => setOpen(isOpen ? -1 : i)}
-                      className="focus-ring flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
+                      className="focus-ring flex w-full items-baseline gap-6 py-7 text-left"
+                      data-cursor-label={isOpen ? 'Close' : 'Open'}
                     >
-                      <span className="font-display text-base font-medium text-white sm:text-lg">
+                      <span className="meta shrink-0 text-gold">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="flex-1 font-display text-2xl italic leading-snug text-white sm:text-3xl">
                         {item.q}
                       </span>
                       <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/5 text-royal-light transition-transform duration-300 ${
+                        className={`shrink-0 text-gold transition-transform duration-300 ${
                           isOpen ? 'rotate-180' : ''
                         }`}
                       >
-                        <Icon name="chevron" className="h-4 w-4" />
+                        <Icon name="chevron" className="h-5 w-5" />
                       </span>
                     </button>
                   </h3>
@@ -53,19 +53,20 @@ export default function FAQ() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
                       >
-                        <p className="px-5 pb-6 text-sm leading-relaxed text-haze sm:px-6">
+                        <p className="ml-[3.25rem] max-w-2xl pb-7 text-base leading-relaxed text-haze">
                           {item.a}
                         </p>
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </li>
               </Reveal>
             )
           })}
-        </div>
+        </ul>
       </div>
     </section>
   )

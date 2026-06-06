@@ -1,29 +1,29 @@
-import Icon from '../components/Icon'
+import Icon from './Icon'
 import { SITE } from '../config'
 import { scrollToId } from '../lib/scroll'
 
-// Always-visible mobile conversion bar: a scanned visitor can reach the owner
-// in one tap from anywhere on the page. Hidden on desktop (md+).
+// Always-visible mobile conversion bar: one tap to reach the studio from
+// anywhere on the page. Editorial flat treatment, hairline gold border.
 export default function MobileActionBar() {
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-[95] md:hidden"
+      className="fixed inset-x-0 bottom-0 z-[95] border-t border-gold/30 bg-ink-900/90 backdrop-blur-md md:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
-      <div className="m-3 flex items-stretch gap-2 rounded-2xl glass-strong p-2 shadow-card">
+      <div className="flex items-stretch divide-x divide-white/10">
         <a
           href={SITE.phoneHref}
-          className="focus-ring flex flex-1 items-center justify-center gap-2 rounded-xl bg-white/5 py-3.5 font-display text-sm font-medium text-white transition-colors active:bg-white/10"
+          className="focus-ring flex flex-1 items-center justify-center gap-2 py-4 font-meta text-[0.7rem] uppercase tracking-[0.3em] text-white active:bg-white/5"
         >
-          <Icon name="phone" className="h-4 w-4 text-gold-soft" />
-          Call / Text
+          <Icon name="phone" className="h-3.5 w-3.5 text-gold" />
+          Call · Text
         </a>
         <button
           type="button"
           onClick={() => scrollToId('booking')}
-          className="focus-ring flex flex-1 items-center justify-center gap-2 rounded-xl bg-royal-gradient py-3.5 font-display text-sm font-semibold text-white shadow-glow"
+          className="focus-ring flex flex-1 items-center justify-center gap-2 bg-gold py-4 font-meta text-[0.7rem] uppercase tracking-[0.3em] text-ink-900 active:bg-gold-soft"
         >
-          <Icon name="calendar" className="h-4 w-4" />
+          <Icon name="calendar" className="h-3.5 w-3.5" />
           Book a Call
         </button>
       </div>

@@ -1,22 +1,22 @@
 import { useState } from 'react'
 import Reveal from '../components/Reveal'
 import Icon from '../components/Icon'
-import { Button, SectionHeading } from '../components/ui'
+import ChapterIntro from '../components/ChapterIntro'
+import { Button } from '../components/ui'
 import { SITE } from '../config'
 import { INDUSTRIES } from '../data/content'
 
 const METHODS = [
   ...SITE.contacts.map((c) => ({
-    icon: 'phone',
     label: `Call or text ${c.name}`,
     value: c.phoneDisplay,
     href: c.phoneHref,
   })),
-  { icon: 'mail', label: 'Email', value: SITE.email, href: SITE.emailHref },
+  { label: 'Email', value: SITE.email, href: SITE.emailHref },
 ]
 
 export default function Contact() {
-  const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const [status, setStatus] = useState('idle')
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -40,38 +40,34 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative section-pad py-24 sm:py-32">
-      <div className="container-max grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        {/* Left: pitch + direct methods */}
+    <section id="contact" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+      <div className="container-max grid items-start gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
         <Reveal>
           <div>
-            <SectionHeading
-              align="left"
-              eyebrow="Get In Touch"
-              title="Tell us about your business."
-              subtitle="Fill out the form or reach out directly. We reply to every message personally — usually within one business day."
-            />
+            <ChapterIntro number="10" title="Correspondence." caption="Get in touch" />
 
-            <ul className="mt-9 flex flex-col gap-3">
+            <p className="mt-10 max-w-md text-base leading-relaxed text-haze sm:text-lg">
+              Fill out the form or reach out directly. We reply to every message
+              personally — usually within one business day.
+            </p>
+
+            <ul className="mt-12 border-t border-white/10">
               {METHODS.map((m) => (
-                <li key={m.label}>
+                <li key={m.label} className="border-b border-white/10">
                   <a
                     href={m.href}
-                    className="focus-ring group flex items-center gap-4 rounded-2xl glass px-5 py-4 transition-colors hover:border-royal-light/40"
-                    {...(m.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                    className="focus-ring group flex items-baseline justify-between gap-4 py-6"
+                    data-cursor-label="Open"
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 text-royal-light transition-colors group-hover:text-white">
-                      <Icon name={m.icon} className="h-5 w-5" />
-                    </span>
-                    <span>
-                      <span className="block text-xs uppercase tracking-wider text-haze">
-                        {m.label}
+                    <span className="flex flex-col gap-1">
+                      <span className="meta text-haze">{m.label}</span>
+                      <span className="font-display text-2xl italic text-white transition-colors group-hover:text-gold sm:text-3xl">
+                        {m.value}
                       </span>
-                      <span className="block font-display text-white">{m.value}</span>
                     </span>
                     <Icon
                       name="arrow"
-                      className="ml-auto h-4 w-4 text-haze transition-transform group-hover:translate-x-1 group-hover:text-gold-soft"
+                      className="h-4 w-4 text-haze transition-transform group-hover:translate-x-1 group-hover:text-gold"
                     />
                   </a>
                 </li>
@@ -80,60 +76,35 @@ export default function Contact() {
           </div>
         </Reveal>
 
-        {/* Right: Formspree form */}
         <Reveal delay={0.1}>
-          <div className="rounded-[2rem] glass-strong p-6 shadow-card sm:p-8">
+          <div>
             {status === 'success' ? (
-              <div className="flex h-full min-h-[420px] flex-col items-center justify-center gap-4 text-center">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-royal/20 text-gold-soft">
-                  <Icon name="check" className="h-8 w-8" />
+              <div className="flex h-full min-h-[420px] flex-col items-center justify-center gap-5 border border-white/10 p-12 text-center">
+                <span className="flex h-14 w-14 items-center justify-center border border-gold text-gold">
+                  <Icon name="check" className="h-6 w-6" />
                 </span>
-                <h3 className="font-display text-2xl font-semibold text-white">Message sent.</h3>
+                <h3 className="font-display text-3xl font-medium italic text-white">Message sent.</h3>
                 <p className="max-w-sm text-haze">
                   Thanks for reaching out — we'll get back to you personally within one business day.
                 </p>
               </div>
             ) : (
-              <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
-                {/* FormSubmit config (delivery is set in src/config.js → formEndpoint) */}
+              <form onSubmit={onSubmit} className="flex flex-col gap-8" noValidate>
                 <input type="hidden" name="_subject" value="New lead from S0MBRA Studio" />
                 <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_captcha" value="false" />
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-8 sm:grid-cols-2">
                   <Field label="Name" htmlFor="name">
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      autoComplete="name"
-                      className="form-input"
-                      placeholder="Your name"
-                    />
+                    <input id="name" name="name" type="text" required autoComplete="name" className="form-input" placeholder="Your name" />
                   </Field>
                   <Field label="Email" htmlFor="email">
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      autoComplete="email"
-                      className="form-input"
-                      placeholder="you@business.com"
-                    />
+                    <input id="email" name="email" type="email" required autoComplete="email" className="form-input" placeholder="you@business.com" />
                   </Field>
                 </div>
 
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-8 sm:grid-cols-2">
                   <Field label="Phone" htmlFor="phone">
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      className="form-input"
-                      placeholder="(555) 000-0000"
-                    />
+                    <input id="phone" name="phone" type="tel" autoComplete="tel" className="form-input" placeholder="(555) 000-0000" />
                   </Field>
                   <Field label="Business type" htmlFor="business">
                     <select id="business" name="business_type" className="form-input" defaultValue="">
@@ -151,14 +122,7 @@ export default function Contact() {
                 </div>
 
                 <Field label="Message" htmlFor="message">
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    className="form-input resize-none"
-                    placeholder="Tell me about your business and what you're looking for…"
-                  />
+                  <textarea id="message" name="message" required rows={4} className="form-input resize-none" placeholder="Tell us about your business and what you're looking for…" />
                 </Field>
 
                 {status === 'error' && (
@@ -173,10 +137,11 @@ export default function Contact() {
 
                 <Button
                   type="submit"
-                  variant="gold"
+                  variant="solid"
                   size="lg"
-                  className="w-full"
+                  className="self-start"
                   icon="arrow"
+                  data-cursor-label="Send"
                   {...(status === 'submitting' ? { disabled: true } : {})}
                 >
                   {status === 'submitting' ? 'Sending…' : 'Send Message'}
@@ -193,7 +158,7 @@ export default function Contact() {
 function Field({ label, htmlFor, children }) {
   return (
     <label htmlFor={htmlFor} className="flex flex-col gap-2">
-      <span className="font-display text-xs uppercase tracking-wider text-haze">{label}</span>
+      <span className="meta">{label}</span>
       {children}
     </label>
   )

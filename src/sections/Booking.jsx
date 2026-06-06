@@ -1,61 +1,66 @@
 import Reveal from '../components/Reveal'
 import Icon from '../components/Icon'
-import { Button, SectionHeading } from '../components/ui'
+import ChapterIntro from '../components/ChapterIntro'
+import { Button } from '../components/ui'
 import { SITE } from '../config'
 import { scrollToId } from '../lib/scroll'
 
-// Book by calling or texting — one tap from a phone, no scheduler needed.
+// "Begin" — minimal cinematic close. One massive line, tap-to-call buttons.
 export default function Booking() {
   return (
-    <section id="booking" className="relative section-pad py-24 sm:py-32">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-radial-glow opacity-60"
-      />
-      <div className="container-max relative">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Free Consultation"
-            title="Let's Build Something."
-            subtitle="Tap to call or text and we'll set up a free, no-pressure consultation — just a quick conversation about making your business look unforgettable."
-          />
-        </Reveal>
+    <section id="booking" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+      <div className="container-max">
+        <ChapterIntro number="07" title="Begin." caption="A free consultation" />
 
-        <Reveal delay={0.1}>
-          <div className="mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-2">
-            {SITE.contacts.map((c) => (
-              <div
-                key={c.name}
-                className="flex flex-col items-center gap-5 rounded-3xl glass-strong p-7 text-center"
-              >
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-royal/30 to-transparent text-royal-light">
-                  <Icon name="phone" className="h-6 w-6" />
-                </span>
+        <p className="mt-10 max-w-2xl text-base leading-relaxed text-haze sm:text-lg">
+          Tap to call or text and we'll set up a free, no-pressure consultation —
+          just a quick conversation about making your business look unforgettable.
+        </p>
+
+        <div className="mt-20 grid gap-8 md:grid-cols-2">
+          {SITE.contacts.map((c, i) => (
+            <Reveal key={c.name} delay={i * 0.08}>
+              <article className="flex flex-col gap-6 border-t border-gold/30 pt-8">
+                <div className="flex items-baseline justify-between">
+                  <span className="meta text-gold">0{i + 1}</span>
+                  <Icon name="phone" className="h-4 w-4 text-gold" />
+                </div>
                 <div>
-                  <p className="font-display text-xl font-semibold text-white">{c.name}</p>
-                  <p className="text-sm text-haze">{c.phoneDisplay}</p>
+                  <h3 className="font-display text-4xl font-medium italic leading-none text-white sm:text-5xl">
+                    {c.name}
+                  </h3>
+                  <p className="meta mt-3 text-haze">{c.phoneDisplay}</p>
                 </div>
-                <div className="flex w-full gap-2">
-                  <Button variant="gold" size="md" href={c.phoneHref} className="flex-1">
-                    Call
+                <div className="mt-2 flex flex-wrap gap-3">
+                  <Button variant="solid" size="md" href={c.phoneHref} data-cursor-label="Call">
+                    Call {c.name}
                   </Button>
-                  <Button variant="ghost" size="md" href={c.smsHref} className="flex-1">
-                    Text
+                  <Button variant="ghost" size="md" href={c.smsHref} data-cursor-label="Text">
+                    Send a Text
                   </Button>
                 </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+              </article>
+            </Reveal>
+          ))}
+        </div>
 
         <Reveal delay={0.15}>
-          <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center gap-4 text-center">
-            <span className="font-display text-xs uppercase tracking-[0.3em] text-haze/70">
-              Prefer to write it out?
-            </span>
-            <Button variant="primary" size="lg" icon="arrow" onClick={() => scrollToId('contact')}>
-              Send a Message Instead
-            </Button>
+          <div className="mt-20 flex flex-col items-start gap-3 border-t border-white/10 pt-10">
+            <span className="meta text-haze">Prefer to write it out?</span>
+            <button
+              type="button"
+              onClick={() => scrollToId('contact')}
+              className="focus-ring group flex items-baseline gap-4 text-left"
+              data-cursor-label="Write"
+            >
+              <span className="font-display text-3xl italic text-white transition-colors group-hover:text-gold sm:text-4xl">
+                Send a message instead
+              </span>
+              <Icon
+                name="arrow"
+                className="h-4 w-4 text-gold transition-transform group-hover:translate-x-2"
+              />
+            </button>
           </div>
         </Reveal>
       </div>
