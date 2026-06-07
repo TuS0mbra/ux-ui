@@ -1,11 +1,6 @@
 // "S0MBRA" wordmark — Cormorant Garamond italic. The zero reads as O but is
-// geometrically distinct via a gold gradient + a refined inner ring. Decorative
-// letters are aria-hidden; the wrapper carries the accessible name.
-//
-// variant="default" — inline use in navbar, footer, etc.
-// variant="kinetic" — the giant hero treatment: oversized, letters animate in
-//   sequence (driven by the Hero section's own framer-motion).
-export default function Wordmark({ className = '', as = 'span' }) {
+// geometrically distinct via a gold gradient + a refined inner ring.
+export default function Wordmark({ className = '', as = 'span', glow = false }) {
   const Tag = as
   return (
     <Tag
@@ -24,6 +19,16 @@ export default function Wordmark({ className = '', as = 'span' }) {
         />
       </span>
       <span aria-hidden="true">MBRA</span>
+      {glow && (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-x-6 -inset-y-3 -z-10 rounded-full opacity-70 blur-2xl"
+          style={{
+            background:
+              'radial-gradient(closest-side, rgba(124,58,237,0.4), transparent)',
+          }}
+        />
+      )}
     </Tag>
   )
 }

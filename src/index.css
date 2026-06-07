@@ -14,7 +14,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Lenis smooth scroll — disable native smooth so they don't fight. */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -28,7 +27,7 @@ html.lenis body {
 
 body {
   margin: 0;
-  background-color: #0a0a0a;
+  background-color: #06040c;
   color: #f5f0e6;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,72 +36,63 @@ body {
 }
 
 ::selection {
-  background: rgba(201, 162, 39, 0.6);
-  color: #0a0a0a;
+  background: rgba(212, 175, 55, 0.6);
+  color: #06040c;
 }
 
-/* Thin themed scrollbar (desktop). */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
+/* slim themed scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #06040c; }
 ::-webkit-scrollbar-thumb {
-  background: #c9a227;
+  background: linear-gradient(#4c1d95, #d4af37);
   border-radius: 999px;
 }
 
 @layer components {
-  .hairline {
-    border-color: rgba(201, 162, 39, 0.22);
+  .glass {
+    background: rgba(13, 10, 26, 0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(167, 139, 250, 0.18);
   }
-  .text-gradient-gold {
-    background: linear-gradient(120deg, #a08020 0%, #e7cd8f 50%, #c9a227 100%);
+  .glass-strong {
+    background: rgba(10, 8, 21, 0.78);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+  }
+  .text-gradient-royal {
+    background: linear-gradient(120deg, #c4b5fd 0%, #8b5cf6 40%, #7c3aed 70%, #d4af37 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+  .text-gradient-gold {
+    background: linear-gradient(120deg, #a08020 0%, #f5e6a8 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .meta {
+    @apply font-meta text-[0.65rem] uppercase tracking-[0.4em] text-haze;
+  }
   .focus-ring {
-    @apply outline-none focus-visible:ring-1 focus-visible:ring-gold/80 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-gold/80 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
   }
   .form-input {
     @apply w-full rounded-none border-0 border-b border-white/15 bg-transparent px-0 py-3 text-base text-white placeholder:text-haze/50 transition-colors duration-200;
     @apply focus:border-gold focus:outline-none focus:ring-0;
   }
-  .form-input option {
-    color: #0a0a0a;
-    background: #f5f0e6;
-  }
-  /* Inputs / textareas inside the ivory pricing chapter or any ivory section */
-  .ivory .form-input {
-    @apply border-ink-900/20 text-ink-900 placeholder:text-ink-900/40 focus:border-ink-900;
-  }
-  /* Chapter-meta label: small uppercase, wide tracking */
-  .meta {
-    @apply font-meta text-[0.65rem] uppercase tracking-[0.4em] text-haze;
-  }
+  .form-input option { color: #06040c; background: #e7cd8f; }
 }
 
 @layer utilities {
-  .section-pad {
-    @apply px-5 sm:px-8 lg:px-16 xl:px-24;
-  }
-  .container-max {
-    @apply mx-auto w-full max-w-7xl;
-  }
-  /* The "ivory chapter" palette flip — used by Pricing */
-  .ivory {
-    background-color: #f5f0e6;
-    color: #0a0a0a;
-  }
-  .ivory ::selection {
-    background: rgba(201, 162, 39, 0.6);
-    color: #0a0a0a;
-  }
+  .section-pad { @apply px-5 sm:px-8 lg:px-16 xl:px-24; }
+  .container-max { @apply mx-auto w-full max-w-7xl; }
 }
 
-/* Custom magnetic cursor: hide the system cursor only when ours is active. */
+/* Custom magnetic cursor: hide system cursor only when ours is active */
 body.cursor-active,
 body.cursor-active a,
 body.cursor-active button,
@@ -110,7 +100,10 @@ body.cursor-active [data-cursor-label] {
   cursor: none;
 }
 
-/* Reduced motion: kill non-essential animation. */
+/* Gradient orbs (ambient atmosphere) */
+.section-grad { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.grad-orb { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

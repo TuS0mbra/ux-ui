@@ -1,68 +1,89 @@
-import Reveal from '../components/Reveal'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import { gsap } from '../lib/gsap'
 import Icon from '../components/Icon'
-import ChapterIntro from '../components/ChapterIntro'
+import GradientOrbs from '../components/GradientOrbs'
 import { Button } from '../components/ui'
 import { SITE } from '../config'
 import { scrollToId } from '../lib/scroll'
 
-// "Begin" — minimal cinematic close. One massive line, tap-to-call buttons.
 export default function Booking() {
+  const ref = useRef(null)
+
+  useGSAP(
+    () => {
+      gsap.from('.book-head > *', {
+        opacity: 0,
+        y: 30,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 80%' },
+      })
+      gsap.from('.book-card', {
+        opacity: 0,
+        y: 60,
+        stagger: 0.15,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 75%' },
+      })
+    },
+    { scope: ref },
+  )
+
   return (
-    <section id="booking" className="relative section-pad bg-ink-900 py-32 sm:py-40">
-      <div className="container-max">
-        <ChapterIntro number="07" title="Begin." caption="A free consultation" />
+    <section ref={ref} id="booking" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+      <GradientOrbs intensity={1} />
+      <div className="container-max relative">
+        <div className="book-head mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="meta mb-6 text-gold">Free Consultation</span>
+          <h2 className="font-display text-4xl font-medium italic leading-[1.05] tracking-tightest text-white sm:text-5xl lg:text-6xl">
+            Let's build something.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-haze-soft sm:text-lg">
+            Tap to call or text and we'll set up a free, no-pressure consultation — just a quick
+            conversation about making your business look unforgettable.
+          </p>
+        </div>
 
-        <p className="mt-10 max-w-2xl text-base leading-relaxed text-haze sm:text-lg">
-          Tap to call or text and we'll set up a free, no-pressure consultation —
-          just a quick conversation about making your business look unforgettable.
-        </p>
-
-        <div className="mt-20 grid gap-8 md:grid-cols-2">
-          {SITE.contacts.map((c, i) => (
-            <Reveal key={c.name} delay={i * 0.08}>
-              <article className="flex flex-col gap-6 border-t border-gold/30 pt-8">
-                <div className="flex items-baseline justify-between">
-                  <span className="meta text-gold">0{i + 1}</span>
-                  <Icon name="phone" className="h-4 w-4 text-gold" />
-                </div>
-                <div>
-                  <h3 className="font-display text-4xl font-medium italic leading-none text-white sm:text-5xl">
-                    {c.name}
-                  </h3>
-                  <p className="meta mt-3 text-haze">{c.phoneDisplay}</p>
-                </div>
-                <div className="mt-2 flex flex-wrap gap-3">
-                  <Button variant="solid" size="md" href={c.phoneHref} data-cursor-label="Call">
-                    Call {c.name}
-                  </Button>
-                  <Button variant="ghost" size="md" href={c.smsHref} data-cursor-label="Text">
-                    Send a Text
-                  </Button>
-                </div>
-              </article>
-            </Reveal>
+        <div className="mx-auto mt-16 grid max-w-3xl gap-5 sm:grid-cols-2">
+          {SITE.contacts.map((c) => (
+            <article
+              key={c.name}
+              className="book-card flex flex-col items-center gap-5 rounded-3xl glass-strong p-8 text-center shadow-glow"
+            >
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-royal/40 to-transparent text-royal-light">
+                <Icon name="phone" className="h-6 w-6" />
+              </span>
+              <div>
+                <p className="font-display text-2xl font-medium italic text-white">{c.name}</p>
+                <p className="meta mt-2 text-haze-soft">{c.phoneDisplay}</p>
+              </div>
+              <div className="flex w-full gap-2">
+                <Button variant="gold" size="md" href={c.phoneHref} className="flex-1" data-cursor-label="Call">
+                  Call
+                </Button>
+                <Button variant="ghost" size="md" href={c.smsHref} className="flex-1" data-cursor-label="Text">
+                  Text
+                </Button>
+              </div>
+            </article>
           ))}
         </div>
 
-        <Reveal delay={0.15}>
-          <div className="mt-20 flex flex-col items-start gap-3 border-t border-white/10 pt-10">
-            <span className="meta text-haze">Prefer to write it out?</span>
-            <button
-              type="button"
-              onClick={() => scrollToId('contact')}
-              className="focus-ring group flex items-baseline gap-4 text-left"
-              data-cursor-label="Write"
-            >
-              <span className="font-display text-3xl italic text-white transition-colors group-hover:text-gold sm:text-4xl">
-                Send a message instead
-              </span>
-              <Icon
-                name="arrow"
-                className="h-4 w-4 text-gold transition-transform group-hover:translate-x-2"
-              />
-            </button>
-          </div>
-        </Reveal>
+        <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center gap-4 text-center">
+          <span className="meta text-haze">Prefer to write it out?</span>
+          <Button
+            variant="primary"
+            size="lg"
+            icon="arrow"
+            onClick={() => scrollToId('contact')}
+            data-cursor-label="Write"
+          >
+            Send a Message Instead
+          </Button>
+        </div>
       </div>
     </section>
   )

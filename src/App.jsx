@@ -3,10 +3,11 @@ import { AnimatePresence } from 'framer-motion'
 
 import SmoothScroll from './components/SmoothScroll'
 import CustomCursor from './components/CustomCursor'
-import GrainOverlay from './components/GrainOverlay'
+import GoldDust from './components/GoldDust'
 import Loader from './components/Loader'
 import Navbar from './components/Navbar'
 import MobileActionBar from './components/MobileActionBar'
+import MadeByUs from './components/MadeByUs'
 
 import Hero from './sections/Hero'
 import Industries from './sections/Industries'
@@ -35,18 +36,19 @@ export default function App() {
 
       <a
         href="#top"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:border focus:border-gold focus:bg-ink-900 focus:px-4 focus:py-2 focus:font-meta focus:text-[0.7rem] focus:uppercase focus:tracking-[0.3em] focus:text-gold"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-royal focus:px-4 focus:py-2 focus:text-sm focus:text-white"
       >
         Skip to content
       </a>
 
       <SmoothScroll />
       <CustomCursor />
-      <GrainOverlay opacity={0.05} />
+      <GoldDust density={55} opacity={0.65} />
       <Navbar />
 
       <main>
         <Hero />
+        <MadeByUs />
         <Industries />
         <Services />
         <Portfolio />

@@ -1,13 +1,12 @@
-import Reveal from '../components/Reveal'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import { gsap, ScrollTrigger } from '../lib/gsap'
 import Icon from '../components/Icon'
-import ChapterIntro from '../components/ChapterIntro'
-import PinnedHorizontalScroll from '../components/PinnedHorizontalScroll'
 import { PORTFOLIO } from '../data/content'
 
-// Each portfolio entry has its OWN per-business BEFORE and AFTER mock — not a
-// shared template recolored. BEFORE = stylized brand-flavored dated mock, NOT
-// an impersonation of the live site. AFTER = a tailored editorial redesign
-// that wipes in on hover.
+// Each entry has its OWN per-business BEFORE/AFTER mock. BEFORE is a stylized
+// dated template (NOT impersonating the real live site). AFTER is a tailored
+// concept redesign that wipes in on hover.
 
 const ChromeBar = (
   <div className="flex items-center gap-1.5 border-b border-white/10 bg-ink-600/80 px-3 py-2">
@@ -64,8 +63,8 @@ function AfterBurgerville() {
           <p className="mt-2 text-sm text-white/80">PNW favorites since 1961.</p>
         </div>
         <div className="flex gap-2">
-          <span className="rounded-sm bg-[#fde68a] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#7f1d1d]">Order</span>
-          <span className="rounded-sm border border-white/40 px-3 py-2 font-meta text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white">Find a Spot</span>
+          <span className="rounded-full bg-[#fde68a] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#7f1d1d]">Order</span>
+          <span className="rounded-full border border-white/40 px-3 py-2 font-meta text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white">Find a Spot</span>
         </div>
       </div>
     </AfterWipe>
@@ -103,13 +102,13 @@ function AfterHeathen() {
           <h4 className="font-display text-3xl font-medium italic uppercase leading-tight tracking-[0.02em] text-white sm:text-4xl">Brewed Heavy</h4>
           <p className="mt-2 text-sm text-white/70">Craft beer · Vancouver, WA</p>
           <div className="mt-5 flex justify-center gap-2">
-            <span className="h-10 w-4 border border-[#facc15]/60 bg-white/5" />
-            <span className="h-10 w-4 border border-[#facc15]/60 bg-white/5" />
-            <span className="h-10 w-4 border border-[#facc15]/60 bg-white/5" />
-            <span className="h-10 w-4 border border-[#facc15]/60 bg-white/5" />
+            <span className="h-10 w-4 rounded-sm border border-[#facc15]/60 bg-white/5" />
+            <span className="h-10 w-4 rounded-sm border border-[#facc15]/60 bg-white/5" />
+            <span className="h-10 w-4 rounded-sm border border-[#facc15]/60 bg-white/5" />
+            <span className="h-10 w-4 rounded-sm border border-[#facc15]/60 bg-white/5" />
           </div>
         </div>
-        <span className="rounded-sm bg-[#facc15] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#1a0a3b]">Visit the Taproom</span>
+        <span className="rounded-full bg-[#facc15] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#1a0a3b]">Visit the Taproom</span>
       </div>
     </AfterWipe>
   )
@@ -139,20 +138,17 @@ function AfterKiggins() {
     <AfterWipe style={{ background: 'linear-gradient(135deg,#1a0606,#5a0f1a 45%,#c19a3a)' }}>
       <div className="flex h-full flex-col p-5">
         <div className="flex items-center justify-center gap-2 border-b border-[#fde68a]/30 pb-2">
-          <span className="h-1 w-1 rounded-full bg-[#fde68a]" />
-          <span className="h-1 w-1 rounded-full bg-[#fde68a]" />
-          <span className="h-1 w-1 rounded-full bg-[#fde68a]" />
-          <span className="h-1 w-1 rounded-full bg-[#fde68a]" />
-          <span className="h-1 w-1 rounded-full bg-[#fde68a]" />
-          <span className="h-1 w-1 rounded-full bg-[#fde68a]" />
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span key={i} className="h-1 w-1 rounded-full bg-[#fde68a]" />
+          ))}
         </div>
         <div className="my-auto text-center">
           <h4 className="font-display text-2xl font-medium italic leading-tight text-white sm:text-3xl">"Where Vancouver goes for film."</h4>
           <p className="mt-4 font-meta text-xs uppercase tracking-[0.3em] text-[#fde68a]">Today · 7:00 · 9:30 · 10:45</p>
         </div>
         <div className="flex justify-center gap-2">
-          <span className="rounded-sm bg-[#fde68a] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#5a0f1a]">Tickets</span>
-          <span className="rounded-sm border border-white/40 px-3 py-2 font-meta text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white">What's Playing</span>
+          <span className="rounded-full bg-[#fde68a] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#5a0f1a]">Tickets</span>
+          <span className="rounded-full border border-white/40 px-3 py-2 font-meta text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white">What's Playing</span>
         </div>
       </div>
     </AfterWipe>
@@ -186,7 +182,7 @@ function AfterLoowit() {
             <h4 className="font-display text-2xl font-medium italic leading-tight text-white sm:text-3xl">Volcanic beer.<br />Local roots.</h4>
             <p className="mt-2 text-sm text-white/70">Brewed at the foot of Mt. St. Helens.</p>
           </div>
-          <span className="self-start rounded-sm bg-[#fde68a] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#0b1a1a]">Taproom</span>
+          <span className="self-start rounded-full bg-[#fde68a] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#0b1a1a]">Taproom</span>
         </div>
         <div className="relative flex-1">
           <svg viewBox="0 0 100 80" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
@@ -229,8 +225,8 @@ function AfterBeaches() {
         </div>
         <h4 className="mt-2 font-display text-2xl font-medium italic leading-tight text-white sm:text-3xl">Sunset, riverside,<br />every night.</h4>
         <div className="mt-4 flex gap-2">
-          <span className="rounded-sm bg-[#fef3c7] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#0c1e3a]">Reserve</span>
-          <span className="rounded-sm border border-white/40 px-3 py-2 font-meta text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white">Menu</span>
+          <span className="rounded-full bg-[#fef3c7] px-4 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#0c1e3a]">Reserve</span>
+          <span className="rounded-full border border-white/40 px-3 py-2 font-meta text-[0.65rem] font-medium uppercase tracking-[0.3em] text-white">Menu</span>
         </div>
       </div>
     </AfterWipe>
@@ -260,7 +256,7 @@ function AfterTrap() {
         <span className="font-meta text-[0.65rem] uppercase tracking-[0.5em] text-white/60">trap door</span>
         <h4 className="mt-5 font-display text-3xl font-medium italic leading-tight text-white sm:text-4xl">Pull the handle.</h4>
         <p className="mt-2 font-display text-base italic text-white/70">Find a pint.</p>
-        <span className="mt-7 rounded-sm border border-[#fde68a]/60 bg-[#fde68a]/10 px-5 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#fde68a]">Visit the Taproom</span>
+        <span className="mt-7 rounded-full border border-[#fde68a]/60 bg-[#fde68a]/10 px-5 py-2 font-meta text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#fde68a]">Visit the Taproom</span>
       </div>
     </AfterWipe>
   )
@@ -288,71 +284,116 @@ function BeforeAfter({ project }) {
   const After = AFTER_BY[project.name]
   if (!Before || !After) return null
   return (
-    <div className="group/ba relative aspect-[4/3] w-full overflow-hidden border border-white/10 bg-ink-700">
+    <div className="group/ba relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-ink-700">
       {ChromeBar}
       <div className="relative h-[calc(100%-29px)] w-full">
         <Before />
         <After />
-        <span className="absolute left-4 top-4 z-10 bg-black/55 px-2 py-1 font-meta text-[0.55rem] uppercase tracking-[0.4em] text-white/75 transition-opacity duration-300 group-hover/ba:opacity-0">
-          Before
-        </span>
-        <span className="absolute right-4 top-4 z-10 bg-gold/90 px-2 py-1 font-meta text-[0.55rem] uppercase tracking-[0.4em] text-ink-900 opacity-0 transition-opacity duration-300 group-hover/ba:opacity-100">
-          After
-        </span>
+        <span className="absolute left-4 top-4 z-10 rounded-full bg-black/55 px-2 py-1 font-meta text-[0.55rem] uppercase tracking-[0.4em] text-white/75 transition-opacity duration-300 group-hover/ba:opacity-0">Before</span>
+        <span className="absolute right-4 top-4 z-10 rounded-full bg-gold/90 px-2 py-1 font-meta text-[0.55rem] uppercase tracking-[0.4em] text-ink-900 opacity-0 transition-opacity duration-300 group-hover/ba:opacity-100">After</span>
       </div>
-    </div>
-  )
-}
-
-function PortfolioPanel({ project, index, count }) {
-  return (
-    <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-      <div className="w-full" data-cursor-label="Hover">
-        <BeforeAfter project={project} />
-      </div>
-      <aside className="flex flex-col gap-5">
-        <div className="flex items-baseline justify-between border-b border-gold/30 pb-3">
-          <span className="meta text-gold">
-            {String(index + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
-          </span>
-          <span className="meta text-haze">Concept</span>
-        </div>
-        <h3 className="font-display text-4xl font-medium italic leading-[1] text-white sm:text-5xl lg:text-6xl">
-          {project.name}
-        </h3>
-        <p className="meta text-haze">{project.category}</p>
-        <p className="max-w-md text-base leading-relaxed text-haze">{project.blurb}</p>
-        <span className="meta mt-2 text-gold">Hover to see the redesign →</span>
-      </aside>
     </div>
   )
 }
 
 export default function Portfolio() {
+  const ref = useRef(null)
+
+  useGSAP(
+    () => {
+      gsap.from('.port-head > *', {
+        opacity: 0,
+        y: 30,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 80%' },
+      })
+      const cards = gsap.utils.toArray('.stack-card')
+      cards.forEach((card, i) => {
+        if (i < cards.length - 1) {
+          ScrollTrigger.create({
+            trigger: cards[i + 1],
+            start: 'top 80%',
+            end: 'top 20%',
+            scrub: true,
+            onUpdate: (self) => {
+              const scale = 1 - self.progress * 0.06
+              const opacity = 1 - self.progress * 0.35
+              gsap.set(card, {
+                scale,
+                opacity,
+                filter: `brightness(${1 - self.progress * 0.25})`,
+              })
+            },
+          })
+        }
+        gsap.from(card, {
+          y: 100,
+          opacity: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 85%', once: true },
+        })
+      })
+    },
+    { scope: ref },
+  )
+
   return (
-    <section id="portfolio" className="relative bg-oxblood-deep">
-      <div className="container-max section-pad pb-16 pt-32 sm:pt-40">
-        <ChapterIntro number="03" title="The Collection." caption="Concept work · Vancouver, WA" />
-        <p className="mt-10 max-w-2xl text-base leading-relaxed text-haze sm:text-lg">
-          Hover any card to see the redesign. These are unsolicited concept
-          reimaginings of real Vancouver, WA businesses — each one designed
-          differently around what that business actually does.
-        </p>
+    <section
+      ref={ref}
+      id="portfolio"
+      className="relative bg-ink-900"
+    >
+      <div className="container-max section-pad pt-32 sm:pt-40">
+        <div className="port-head mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="meta mb-6 text-gold">Concept Work · Vancouver, WA</span>
+          <h2 className="font-display text-4xl font-medium italic leading-[1.05] tracking-tightest text-white sm:text-5xl lg:text-6xl">
+            What we'd build for our city.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-haze-soft sm:text-lg">
+            Hover any card to see the redesign. These are unsolicited concept reimaginings of real
+            Vancouver, WA businesses — each designed differently around what that business actually does.
+          </p>
+        </div>
       </div>
 
-      <PinnedHorizontalScroll count={PORTFOLIO.length}>
-        {(i) => (
-          <PortfolioPanel project={PORTFOLIO[i]} index={i} count={PORTFOLIO.length} />
-        )}
-      </PinnedHorizontalScroll>
+      <div className="container-max section-pad relative pb-32 pt-20">
+        <div className="relative pb-[40vh]">
+          {PORTFOLIO.map((project, i) => (
+            <div
+              key={project.name}
+              className="stack-card relative mb-10 grid grid-cols-1 gap-8 rounded-[2rem] border border-royal-light/15 bg-ink-800/95 p-6 will-change-transform shadow-glow backdrop-blur-md md:grid-cols-[1.1fr_1fr] md:gap-12 md:p-10"
+              style={{ position: 'sticky', top: `${10 + i * 3}vh`, transformOrigin: 'center top' }}
+            >
+              <div className="order-2 flex flex-col justify-between gap-6 md:order-1">
+                <div className="flex items-baseline justify-between border-b border-gold/30 pb-3">
+                  <span className="meta text-gold">
+                    {String(i + 1).padStart(2, '0')} / {String(PORTFOLIO.length).padStart(2, '0')}
+                  </span>
+                  <span className="meta text-haze">Concept</span>
+                </div>
+                <div>
+                  <h3 className="font-display text-4xl font-medium italic leading-[1] text-white sm:text-5xl lg:text-6xl">
+                    {project.name}
+                  </h3>
+                  <p className="meta mt-3 text-haze-soft">{project.category}</p>
+                </div>
+                <p className="text-base leading-relaxed text-haze-soft">{project.blurb}</p>
+                <span className="meta text-gold-soft">Hover the screen → see the redesign</span>
+              </div>
+              <div className="order-1 md:order-2" data-cursor-label="Hover">
+                <BeforeAfter project={project} />
+              </div>
+            </div>
+          ))}
+        </div>
 
-      <div className="container-max section-pad pb-32">
-        <Reveal>
-          <p className="mx-auto mt-10 max-w-2xl text-center font-meta text-[0.65rem] uppercase tracking-[0.3em] text-haze/70">
-            Unsolicited concept redesigns of real Vancouver, WA businesses — not paid client work.
-            "Before" mockups are stylized approximations for contrast, not the businesses' actual sites.
-          </p>
-        </Reveal>
+        <p className="mx-auto mt-10 max-w-2xl text-center font-meta text-[0.65rem] uppercase tracking-[0.3em] text-haze/70">
+          Unsolicited concept redesigns of real Vancouver, WA businesses — not paid client work.
+          "Before" mockups are stylized for contrast, not the businesses' actual sites.
+        </p>
       </div>
     </section>
   )

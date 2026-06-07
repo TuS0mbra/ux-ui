@@ -2,10 +2,8 @@ import { useRef } from 'react'
 import Icon from './Icon'
 import { useIsDesktop, usePrefersReducedMotion } from '../hooks/useMediaQuery'
 
-// --- Editorial button ----------------------------------------------------
-// Renders as <a> when href is set, otherwise <button>. Hairline borders,
-// uppercase letterforms, wide tracking. On desktop the button has a subtle
-// magnetic pull toward the cursor.
+// Premium pill buttons with a magnetic pull toward the cursor on desktop.
+// Variants are tuned for the purple+gold palette.
 export function Button({
   children,
   variant = 'primary',
@@ -27,8 +25,8 @@ export function Button({
     const r = ref.current.getBoundingClientRect()
     const cx = r.left + r.width / 2
     const cy = r.top + r.height / 2
-    const dx = (e.clientX - cx) * 0.18
-    const dy = (e.clientY - cy) * 0.18
+    const dx = (e.clientX - cx) * 0.2
+    const dy = (e.clientY - cy) * 0.2
     ref.current.style.transform = `translate(${dx}px, ${dy}px)`
   }
   const onLeave = () => {
@@ -36,7 +34,7 @@ export function Button({
   }
 
   const base =
-    'group relative inline-flex items-center justify-center gap-3 font-meta uppercase tracking-[0.3em] transition-colors duration-300 focus-ring will-change-transform'
+    'group relative inline-flex items-center justify-center gap-3 rounded-full font-meta uppercase tracking-[0.25em] transition-[background,color,border,box-shadow] duration-300 focus-ring will-change-transform'
   const sizes = {
     sm: 'px-4 py-2 text-[0.65rem]',
     md: 'px-6 py-3 text-[0.7rem]',
@@ -44,13 +42,13 @@ export function Button({
   }
   const variants = {
     primary:
-      'border border-gold/70 text-gold hover:bg-gold hover:text-ink-900',
-    inverse:
-      'border border-ink-900/70 text-ink-900 hover:bg-ink-900 hover:text-ivory',
-    solid:
-      'bg-gold text-ink-900 hover:bg-gold-soft',
+      'bg-royal-gradient text-white shadow-glow hover:shadow-glow-lg',
+    gold:
+      'bg-gold-gradient text-ink-900 shadow-gold hover:shadow-gold-lg',
     ghost:
-      'border border-white/20 text-white hover:border-gold hover:text-gold',
+      'glass text-white hover:border-royal-light/60',
+    outline:
+      'border border-gold/70 text-gold hover:bg-gold hover:text-ink-900',
   }
   const cls = `${base} ${sizes[size]} ${variants[variant]} ${className}`
 
@@ -66,6 +64,11 @@ export function Button({
     </span>
   )
 
+  const transitionStyle = {
+    transition:
+      'transform 0.25s cubic-bezier(0.22,1,0.36,1), background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s',
+  }
+
   if (href) {
     return (
       <a
@@ -75,7 +78,7 @@ export function Button({
         onMouseMove={onMove}
         onMouseLeave={onLeave}
         className={cls}
-        style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), background-color 0.3s, color 0.3s, border-color 0.3s' }}
+        style={transitionStyle}
         {...rest}
       >
         {inner}
@@ -90,7 +93,7 @@ export function Button({
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={cls}
-      style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), background-color 0.3s, color 0.3s, border-color 0.3s' }}
+      style={transitionStyle}
       {...rest}
     >
       {inner}

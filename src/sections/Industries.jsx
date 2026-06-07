@@ -1,44 +1,81 @@
-import Reveal from '../components/Reveal'
-import ChapterIntro from '../components/ChapterIntro'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import { gsap } from '../lib/gsap'
+import Icon from '../components/Icon'
 import { INDUSTRIES } from '../data/content'
 
-// Editorial numbered list — no card grid. Hover offsets the row right and
-// lights a gold dot. Hairline rule between rows.
 export default function Industries() {
+  const ref = useRef(null)
+
+  useGSAP(
+    () => {
+      gsap.from('.ind-head > *', {
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 80%' },
+      })
+      gsap.from('.ind-card', {
+        opacity: 0,
+        y: 60,
+        filter: 'blur(8px)',
+        stagger: { each: 0.07, from: 'start' },
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 75%' },
+      })
+    },
+    { scope: ref },
+  )
+
   return (
-    <section id="industries" className="relative section-pad py-32 sm:py-40">
-      <div className="container-max">
-        <ChapterIntro number="01" title="The Index." caption="Who we build for" />
+    <section
+      ref={ref}
+      id="industries"
+      className="relative section-pad bg-ink-900 py-32 sm:py-40"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{
+          background:
+            'radial-gradient(40% 50% at 50% 30%, rgba(124,58,237,0.25), transparent 70%)',
+        }}
+      />
+      <div className="container-max relative">
+        <div className="ind-head mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="meta mb-6 text-gold">Who We Build For</span>
+          <h2 className="font-display text-4xl font-medium italic leading-[1.05] tracking-tightest text-white sm:text-5xl lg:text-6xl">
+            If you run it, we'll build the site you need.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-haze-soft sm:text-lg">
+            From the garage to the gym floor — friendly, modern websites that fit how your business actually works.
+          </p>
+        </div>
 
-        <p className="mt-10 max-w-2xl text-base leading-relaxed text-haze sm:text-lg">
-          From the garage to the gym floor — we build for every kind of business in
-          Vancouver. You run it. We build the site that helps it grow.
-        </p>
-
-        <ul className="mt-16 border-t border-white/10">
-          {INDUSTRIES.map((industry, i) => (
-            <Reveal key={industry.name} delay={(i % 3) * 0.04}>
-              <li>
-                <div
-                  className="group relative grid grid-cols-[3.5rem_1fr_auto] items-baseline gap-6 border-b border-white/10 py-7 transition-colors duration-300 hover:bg-white/[0.02]"
-                  data-cursor-label="Industry"
-                >
-                  <span className="meta text-gold">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="flex flex-col gap-1">
-                    <span className="font-display text-3xl italic leading-none text-white transition-transform duration-500 group-hover:translate-x-2 sm:text-4xl lg:text-5xl">
-                      {industry.name}
-                    </span>
-                    <span className="meta text-haze">{industry.tag}</span>
-                  </span>
-                  <span className="flex items-center gap-3 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <span className="meta text-gold">We build it</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
-                  </span>
-                </div>
-              </li>
-            </Reveal>
+        <div className="mt-16 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+          {INDUSTRIES.map((industry) => (
+            <article
+              key={industry.name}
+              className="ind-card group relative flex flex-col gap-3 rounded-3xl glass p-5 transition-all duration-300 hover:border-royal-light/50 hover:shadow-glow sm:p-6"
+              data-cursor-label="Industry"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-royal/30 to-transparent text-royal-light transition-colors duration-300 group-hover:from-royal/50 group-hover:text-white">
+                <Icon name={industry.icon} className="h-6 w-6" />
+              </span>
+              <h3 className="font-display text-xl font-medium italic text-white sm:text-2xl">
+                {industry.name}
+              </h3>
+              <p className="text-sm text-haze-soft">{industry.tag}</p>
+              <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-[0.65rem] font-medium uppercase tracking-[0.25em] text-gold-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                We build for you too
+                <Icon name="arrow" className="h-3.5 w-3.5" />
+              </span>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   )

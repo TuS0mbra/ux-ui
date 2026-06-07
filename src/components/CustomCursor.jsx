@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useIsDesktop, usePrefersReducedMotion } from '../hooks/useMediaQuery'
 
-// Editorial magnetic cursor: a hairline gold ring follows with easing, a tiny
-// dot tracks instantly. When hovering an element with [data-cursor-label] (or
-// any interactive element), the ring expands and a small uppercase caption
-// renders below it. Desktop + motion only.
+// Magnetic cursor: a glowing royal ring follows with easing, a gold dot tracks
+// instantly. Interactive targets can set [data-cursor-label] to display a small
+// editorial caption. Desktop + motion only.
 export default function CustomCursor() {
   const desktop = useIsDesktop()
   const reduced = usePrefersReducedMotion()
@@ -25,7 +24,7 @@ export default function CustomCursor() {
 
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
     const ringPos = { ...mouse }
-    let hoverState = 'idle' // 'idle' | 'hover' | 'labeled'
+    let hoverState = 'idle'
     let rafId
 
     const onMove = (e) => {
@@ -51,15 +50,15 @@ export default function CustomCursor() {
     }
 
     const render = () => {
-      ringPos.x += (mouse.x - ringPos.x) * 0.2
-      ringPos.y += (mouse.y - ringPos.y) * 0.2
+      ringPos.x += (mouse.x - ringPos.x) * 0.18
+      ringPos.y += (mouse.y - ringPos.y) * 0.18
       if (ring) {
-        const scale = hoverState === 'idle' ? 1 : hoverState === 'hover' ? 1.6 : 2.4
+        const scale = hoverState === 'idle' ? 1 : hoverState === 'hover' ? 1.8 : 2.6
         ring.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%) scale(${scale})`
-        ring.style.opacity = hoverState === 'idle' ? '0.55' : '0.95'
+        ring.style.opacity = hoverState === 'idle' ? '0.7' : '1'
       }
       if (labelEl) {
-        labelEl.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y + 34}px, 0) translate(-50%, 0)`
+        labelEl.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y + 36}px, 0) translate(-50%, 0)`
       }
       rafId = requestAnimationFrame(render)
     }
@@ -81,17 +80,19 @@ export default function CustomCursor() {
       <div
         ref={ringRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[120] h-9 w-9 rounded-full border border-gold/70 mix-blend-difference transition-[opacity] duration-200"
+        className="pointer-events-none fixed left-0 top-0 z-[120] h-10 w-10 rounded-full border border-royal-light/80 mix-blend-screen transition-[opacity] duration-200"
+        style={{ boxShadow: '0 0 20px rgba(167,139,250,0.6)' }}
       />
       <div
         ref={dotRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[121] h-1 w-1 rounded-full bg-gold"
+        className="pointer-events-none fixed left-0 top-0 z-[121] h-1.5 w-1.5 rounded-full bg-gold-soft"
+        style={{ boxShadow: '0 0 10px rgba(231,205,143,0.9)' }}
       />
       <div
         ref={labelRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed left-0 top-0 z-[121] whitespace-nowrap font-meta text-[0.6rem] uppercase tracking-[0.4em] text-gold transition-opacity duration-200 ${
+        className={`pointer-events-none fixed left-0 top-0 z-[121] whitespace-nowrap font-meta text-[0.6rem] uppercase tracking-[0.4em] text-gold-soft transition-opacity duration-200 ${
           label ? 'opacity-100' : 'opacity-0'
         }`}
       >

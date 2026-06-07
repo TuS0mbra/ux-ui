@@ -1,33 +1,60 @@
-import Reveal from '../components/Reveal'
-import ChapterIntro from '../components/ChapterIntro'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import { gsap } from '../lib/gsap'
 import { PROCESS } from '../data/content'
 
-// Vertical column of huge italic numerals 01–04; editorial body beside. Hairline
-// rules between rows.
 export default function Process() {
+  const ref = useRef(null)
+
+  useGSAP(
+    () => {
+      gsap.from('.proc-head > *', {
+        opacity: 0,
+        y: 30,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 80%' },
+      })
+      gsap.from('.proc-step', {
+        opacity: 0,
+        y: 60,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 75%' },
+      })
+    },
+    { scope: ref },
+  )
+
   return (
-    <section id="process" className="relative section-pad bg-graphite py-32 sm:py-40">
+    <section ref={ref} id="process" className="relative section-pad bg-ink-900 py-32 sm:py-40">
       <div className="container-max">
-        <ChapterIntro number="04" title="How It's Made." caption="The process" />
+        <div className="proc-head mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="meta mb-6 text-gold">The Process</span>
+          <h2 className="font-display text-4xl font-medium italic leading-[1.05] tracking-tightest text-white sm:text-5xl lg:text-6xl">
+            Simple, transparent, built around you.
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-haze-soft sm:text-lg">
+            Four steps from first call to launch day. You're involved at every milestone — nothing
+            ships until you love it.
+          </p>
+        </div>
 
-        <p className="mt-10 max-w-2xl text-base leading-relaxed text-haze sm:text-lg">
-          Four steps from first call to launch day. You're involved at every
-          milestone — nothing ships until you love it.
-        </p>
-
-        <ol className="mt-20 border-t border-white/10">
-          {PROCESS.map((step, i) => (
-            <Reveal key={step.step} delay={i * 0.08}>
-              <li className="grid grid-cols-1 items-baseline gap-4 border-b border-white/10 py-12 md:grid-cols-[10rem_1fr_2fr] md:gap-12 md:py-14">
-                <span className="font-display text-7xl italic leading-none text-gold sm:text-8xl">
-                  {step.step}
-                </span>
-                <span className="font-display text-3xl italic leading-tight text-white sm:text-4xl">
-                  {step.title}
-                </span>
-                <p className="max-w-xl text-base leading-relaxed text-haze">{step.desc}</p>
-              </li>
-            </Reveal>
+        <ol className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent md:block"
+          />
+          {PROCESS.map((step) => (
+            <li key={step.step} className="proc-step relative flex flex-col gap-4">
+              <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl glass-strong font-display text-lg font-bold italic text-gradient-gold shadow-glow">
+                {step.step}
+              </span>
+              <h3 className="font-display text-2xl font-medium italic text-white">{step.title}</h3>
+              <p className="text-sm leading-relaxed text-haze-soft">{step.desc}</p>
+            </li>
           ))}
         </ol>
       </div>

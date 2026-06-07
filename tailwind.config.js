@@ -5,33 +5,30 @@ export default {
     extend: {
       colors: {
         ink: {
-          900: '#0a0a0a',
-          800: '#0e0e10',
-          700: '#14141a',
-          600: '#1c1c22',
-          500: '#26262d',
+          900: '#06040c',
+          800: '#0a0815',
+          700: '#0f0c1f',
+          600: '#15112a',
+          500: '#1d1838',
         },
-        graphite: '#14141a',
-        oxblood: {
-          DEFAULT: '#2a0a14',
-          deep: '#1a0610',
-          warm: '#3d0e1c',
-        },
-        ivory: {
-          DEFAULT: '#f5f0e6',
-          soft: '#faf5ec',
-          deep: '#e8e0d0',
+        royal: {
+          DEFAULT: '#7c3aed',
+          deep: '#4c1d95',
+          mid: '#6d28d9',
+          light: '#a78bfa',
+          glow: '#8b5cf6',
+          pale: '#c4b5fd',
         },
         gold: {
-          DEFAULT: '#c9a227',
+          DEFAULT: '#d4af37',
           soft: '#e7cd8f',
           deep: '#a08020',
-          foil: '#d8b25a',
+          foil: '#f5e6a8',
         },
         haze: {
-          DEFAULT: '#8a8689',
-          deep: '#5a575a',
-          soft: '#b8b4b7',
+          DEFAULT: '#a89dc2',
+          deep: '#6b6080',
+          soft: '#d1c8e0',
         },
       },
       fontFamily: {
@@ -46,25 +43,37 @@ export default {
         wide: '0.4em',
       },
       boxShadow: {
-        hairline: '0 1px 0 0 rgba(201, 162, 39, 0.4)',
-        goldsoft: '0 0 80px -30px rgba(201, 162, 39, 0.5)',
+        glow: '0 0 80px -10px rgba(139, 92, 246, 0.6)',
+        'glow-lg': '0 0 140px -20px rgba(139, 92, 246, 0.7)',
+        gold: '0 0 70px -14px rgba(212, 175, 55, 0.55)',
+        'gold-lg': '0 0 120px -20px rgba(212, 175, 55, 0.6)',
+      },
+      backgroundImage: {
+        'royal-gradient': 'linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #a78bfa 100%)',
+        'gold-gradient': 'linear-gradient(135deg, #a08020 0%, #f5e6a8 50%, #d4af37 100%)',
+        'aurora':
+          'radial-gradient(45% 60% at 30% 30%, rgba(124,58,237,0.45), transparent 60%), radial-gradient(35% 45% at 75% 70%, rgba(212,175,55,0.18), transparent 65%), radial-gradient(60% 50% at 50% 50%, rgba(76,29,149,0.55), transparent 70%)',
       },
       keyframes: {
-        'gold-sweep': {
-          '0%': { transform: 'scaleX(0)', transformOrigin: 'left' },
-          '100%': { transform: 'scaleX(1)', transformOrigin: 'left' },
+        'gradient-pan': {
+          '0%,100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
         },
-        'letter-rise': {
-          '0%': { opacity: '0', transform: 'translateY(1em)', filter: 'blur(8px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
+        float: {
+          '0%,100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
         },
-        marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+        'pulse-glow': {
+          '0%,100%': { opacity: '0.55' },
+          '50%': { opacity: '1' },
         },
         'orbit-slow': {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         'grain-flicker': {
           '0%, 100%': { transform: 'translate(0, 0)' },
@@ -75,10 +84,11 @@ export default {
         },
       },
       animation: {
-        'gold-sweep': 'gold-sweep 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-        'letter-rise': 'letter-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-        marquee: 'marquee 28s linear infinite',
-        'orbit-slow': 'orbit-slow 60s linear infinite',
+        'gradient-pan': 'gradient-pan 8s ease infinite',
+        float: 'float 6s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+        'orbit-slow': 'orbit-slow 80s linear infinite',
+        marquee: 'marquee 32s linear infinite',
         'grain-flicker': 'grain-flicker 0.6s steps(4) infinite',
       },
     },
