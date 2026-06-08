@@ -32,7 +32,7 @@ export default function FAQ() {
   )
 
   return (
-    <section ref={ref} id="faq" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+    <section ref={ref} id="faq" className="relative section-pad bg-ink-900 py-16 sm:py-24">
       <div className="container-max max-w-3xl">
         <div className="faq-head mx-auto flex flex-col items-center text-center">
           <span className="meta mb-6 text-gold">Questions</span>
@@ -41,7 +41,7 @@ export default function FAQ() {
           </h2>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3">
+        <div className="mt-8 flex flex-col gap-3">
           {ITEMS.map((item, i) => {
             const isOpen = open === i
             const panelId = `faq-panel-${i}`

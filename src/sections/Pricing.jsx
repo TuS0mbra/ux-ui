@@ -40,7 +40,7 @@ export default function Pricing() {
   )
 
   return (
-    <section ref={ref} id="pricing" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+    <section ref={ref} id="pricing" className="relative section-pad bg-ink-900 py-16 sm:py-24">
       <GradientOrbs palette="gold" intensity={0.9} />
       <div className="container-max relative">
         <div className="price-head mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -66,7 +66,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="price-tiers mt-16 grid items-end gap-5 lg:grid-cols-3">
+        <div className="price-tiers mt-12 grid items-end gap-5 lg:grid-cols-3">
           {PRICING.map((tier) => (
             <article
               key={tier.name}

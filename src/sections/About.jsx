@@ -39,7 +39,7 @@ export default function About() {
   )
 
   return (
-    <section ref={ref} id="about" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+    <section ref={ref} id="about" className="relative section-pad bg-ink-900 py-16 sm:py-24">
       <div className="container-max grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="about-left">
           <span className="meta text-gold">About the Studio</span>

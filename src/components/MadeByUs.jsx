@@ -67,7 +67,7 @@ export default function MadeByUs() {
   return (
     <section
       ref={ref}
-      className="relative section-pad py-24 sm:py-32"
+      className="relative section-pad py-14 sm:py-20"
       aria-labelledby="mbu-heading"
     >
       <div className="container-max flex flex-col items-center text-center">

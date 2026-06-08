@@ -49,7 +49,7 @@ export default function Testimonials() {
     <section
       ref={ref}
       id="testimonials"
-      className="relative section-pad bg-ink-900 py-32 sm:py-40"
+      className="relative section-pad bg-ink-900 py-16 sm:py-24"
     >
       <div className="container-max">
         <div className="test-head mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -63,7 +63,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-5 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}

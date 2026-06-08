@@ -29,7 +29,7 @@ export default function Process() {
   )
 
   return (
-    <section ref={ref} id="process" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+    <section ref={ref} id="process" className="relative section-pad bg-ink-900 py-16 sm:py-24">
       <div className="container-max">
         <div className="proc-head mx-auto flex max-w-3xl flex-col items-center text-center">
           <span className="meta mb-6 text-gold">The Process</span>
@@ -42,7 +42,7 @@ export default function Process() {
           </p>
         </div>
 
-        <ol className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
+        <ol className="relative mt-10 grid gap-8 md:grid-cols-4 md:gap-6">
           <span
             aria-hidden="true"
             className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent md:block"

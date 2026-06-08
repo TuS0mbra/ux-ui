@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion'
 
 import SmoothScroll from './components/SmoothScroll'
 import CustomCursor from './components/CustomCursor'
-import GoldDust from './components/GoldDust'
 import Loader from './components/Loader'
 import Navbar from './components/Navbar'
 import MobileActionBar from './components/MobileActionBar'
@@ -43,7 +42,6 @@ export default function App() {
 
       <SmoothScroll />
       <CustomCursor />
-      <GoldDust density={55} opacity={0.65} />
       <Navbar />
 
       <main>

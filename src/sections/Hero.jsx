@@ -1,11 +1,13 @@
-import { useRef } from 'react'
+import { Suspense, lazy, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from '../lib/gsap'
-import GradientOrbs from '../components/GradientOrbs'
 import Marquee from '../components/Marquee'
 import { Button } from '../components/ui'
 import { scrollToId } from '../lib/scroll'
 import { useIsDesktop, usePrefersReducedMotion } from '../hooks/useMediaQuery'
+
+// Lazy-load WebGL so the heavy chunk only ships when actually rendered.
+const AuroraScene = lazy(() => import('../components/AuroraScene'))
 
 const LETTERS = ['S', '0', 'M', 'B', 'R', 'A']
 
@@ -71,17 +73,22 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-ink-900"
     >
-      <GradientOrbs intensity={1.3} />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-      >
-        <div className="h-[120vmin] w-[120vmin] animate-orbit-slow rounded-full border border-gold/15" />
-      </div>
+      {/* CSS aurora gradient as fallback (always present, behind canvas) */}
+      <div aria-hidden="true" className="absolute inset-0 bg-aurora opacity-90" />
+
+      {/* WebGL aurora + embers + stars */}
+      {!reduced && (
+        <Suspense fallback={null}>
+          <AuroraScene />
+        </Suspense>
+      )}
 
       <div className="container-max section-pad relative z-10 flex flex-col items-center pb-24 pt-24 text-center">
         <span className="hero-tag meta mb-7 inline-flex items-center gap-3 rounded-full glass px-4 py-2 text-gold">
-          <span className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-gold" aria-hidden="true" />
+          <span
+            className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-gold"
+            aria-hidden="true"
+          />
           Vancouver, WA · Web Design Studio
         </span>
 

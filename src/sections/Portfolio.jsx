@@ -346,7 +346,7 @@ export default function Portfolio() {
       id="portfolio"
       className="relative bg-ink-900"
     >
-      <div className="container-max section-pad pt-32 sm:pt-40">
+      <div className="container-max section-pad pt-16 sm:pt-24">
         <div className="port-head mx-auto flex max-w-3xl flex-col items-center text-center">
           <span className="meta mb-6 text-gold">Concept Work · Vancouver, WA</span>
           <h2 className="font-display text-4xl font-medium italic leading-[1.05] tracking-tightest text-white sm:text-5xl lg:text-6xl">
@@ -359,7 +359,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      <div className="container-max section-pad relative pb-32 pt-20">
+      <div className="container-max section-pad relative pb-16 pt-10">
         <div className="relative pb-[40vh]">
           {PORTFOLIO.map((project, i) => (
             <div

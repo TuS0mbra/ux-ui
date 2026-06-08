@@ -33,7 +33,7 @@ export default function Booking() {
   )
 
   return (
-    <section ref={ref} id="booking" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+    <section ref={ref} id="booking" className="relative section-pad bg-ink-900 py-16 sm:py-24">
       <GradientOrbs intensity={1} />
       <div className="container-max relative">
         <div className="book-head mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -47,7 +47,7 @@ export default function Booking() {
           </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-3xl gap-5 sm:grid-cols-2">
+        <div className="mx-auto mt-10 grid max-w-3xl gap-5 sm:grid-cols-2">
           {SITE.contacts.map((c) => (
             <article
               key={c.name}

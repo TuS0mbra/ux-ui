@@ -34,7 +34,7 @@ export default function Industries() {
     <section
       ref={ref}
       id="industries"
-      className="relative section-pad bg-ink-900 py-32 sm:py-40"
+      className="relative section-pad bg-ink-900 py-16 sm:py-24"
     >
       <div
         aria-hidden="true"
@@ -55,7 +55,7 @@ export default function Industries() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
           {INDUSTRIES.map((industry) => (
             <article
               key={industry.name}

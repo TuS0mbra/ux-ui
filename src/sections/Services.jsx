@@ -34,7 +34,7 @@ export default function Services() {
     <section
       ref={ref}
       id="services"
-      className="relative section-pad bg-ink-800 py-32 sm:py-40"
+      className="relative section-pad bg-ink-800 py-16 sm:py-24"
     >
       <div
         aria-hidden="true"
@@ -51,7 +51,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => (
             <article
               key={service.title}

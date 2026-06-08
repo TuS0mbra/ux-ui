@@ -15,7 +15,7 @@ const NAV = [
 export default function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className="relative section-pad bg-ink-900 pb-28 pt-20 sm:pb-20">
+    <footer className="relative section-pad bg-ink-900 pb-28 pt-12 sm:pb-14">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"
@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-7 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-haze">© {year} S0MBRA Studio. All rights reserved.</p>
           <p className="meta text-haze">Built for the businesses that built this town</p>
         </div>

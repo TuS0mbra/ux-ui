@@ -64,7 +64,7 @@ export default function Contact() {
   )
 
   return (
-    <section ref={ref} id="contact" className="relative section-pad bg-ink-900 py-32 sm:py-40">
+    <section ref={ref} id="contact" className="relative section-pad bg-ink-900 py-16 sm:py-24">
       <div className="container-max grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div className="contact-left">
           <span className="meta text-gold">Get in Touch</span>
